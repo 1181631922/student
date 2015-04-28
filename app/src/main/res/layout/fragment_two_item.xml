@@ -1,0 +1,92 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.edu.sjzc.teacher.uiFragment.TwoItemFragment">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/twoitem_frag_one_ib"
+                android:layout_width="160dp"
+                android:layout_height="80dp"
+                android:onClick="onClick" />
+
+            <TextView
+                android:id="@+id/twoitem_frag_one_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:id="@+id/twoitem_frag_two_ib"
+                android:layout_width="160dp"
+                android:layout_height="80dp"
+                android:onClick="onClick" />
+
+            <TextView
+                android:id="@+id/twoitem_frag_two_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:paddingTop="10dp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/twoitem_frag_three_ib"
+                android:layout_width="160dp"
+                android:layout_height="80dp"
+                android:onClick="onClick"
+
+                />
+
+            <TextView
+                android:id="@+id/twoitem_frag_three_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:id="@+id/twoitem_frag_four_ib"
+                android:layout_width="160dp"
+                android:layout_height="80dp"
+                android:onClick="onClick" />
+
+            <TextView
+                android:id="@+id/twoitem_frag_four_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:paddingTop="10dp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

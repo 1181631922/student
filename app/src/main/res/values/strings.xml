@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">石院学生端</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="s_view_btn">more</string>
+    <string name="username_hint">输入账号</string>
+    <string name="username_input">账号</string>
+    <string name="password_hint">输入密码</string>
+    <string name="password_input">密码</string>
+    <string name="opt_remember">记住密码</string>
+    <string name="login">登录</string>
+    <string name="zhuce">注册</string>
+    <string name="per_title_changepassword">更改密码</string>
+    <string name="dialog_changepassword">你确认更改密码？</string>
+    <string name="per_title_schedule">查看课表</string>
+    <string name="per_title_personalinfo">查看个人信息</string>
+    <string name="per_title_changeperinfo">更改个人信息</string>
+    <string name="dialog_changeperinfo">你确认更改个人信息</string>
+    <string name="per_title_changeper">更改个人信息</string>
+    <string name="exit">退出</string>
+    <string name="exit_app">你确定退出该程序？</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确认</string>
+    <string name="back_to_home">返回主页</string>
+    <string name="backtohomepage">你确定返回主页？</string>
+    <string name="adv_title_studentinfo">查看信息</string>
+    <string name="pull_to_refresh">下拉可以刷新</string>
+    <string name="release_to_refresh">释放立即刷新</string>
+    <string name="refreshing">正在刷新…</string>
+    <string name="not_updated_yet">暂未更新过</string>
+    <string name="updated_at">上次更新于%1$s前</string>
+    <string name="updated_just_now">刚刚更新</string>
+    <string name="time_error">时间有问题</string>
+    <string name="title_activity_find_teacher">查找教师</string>
+    <string name="web_show_back">信息浏览</string>
+    <string name="title_activity_course">CourseActivity</string>
+    <string name="title_activity_my_ranking_info">我的得分详情</string>
+    <string name="title_activity_retroaction">RetroactionActivity</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_search_info">SearchInfoActivity</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="title_activity_evealuation">EvealuationActivity</string>
+
+</resources>

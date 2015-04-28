@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.edu.sjzc.student"
+    android:versionCode="1"
+    android:versionName="1.0">
+    <!-- 震动感应器 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!-- SDCard写入数据权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 联网权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 拨号权限 -->
+    <android:uses-permission android:name="android.permission.CALL_PHONE" />
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.GuideActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.AppStartActivicy"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiFragment.MainTabActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.SignActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.HomeNewsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.HomeInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.HomeExchangeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.PerChangeInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.PerChangePasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.PerPersonalInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.PerScheduleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.TeacherRankingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.MyRankingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.AdvStudentInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.FindTeacherActivity"
+            android:label="@string/title_activity_find_teacher"
+            android:screenOrientation="portrait" />
+
+        <service
+            android:name="cn.edu.sjzc.student.service.ConfirmSoundService"
+            android:exported="true" />
+        <service
+            android:name="cn.edu.sjzc.student.service.ExitSoundService"
+            android:exported="true" />
+        <service
+            android:name="cn.edu.sjzc.student.service.LowBatterySoundService"
+            android:exported="true" />
+
+        <receiver android:name="cn.edu.sjzc.student.broadcasterceiver.SoundBroadCasteReceiver" />
+
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.CourseActivity"
+            android:label="@string/title_activity_course"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.MyRankingInfoActivity"
+            android:label="@string/title_activity_my_ranking_info"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.TeacherRankingInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.RetroactionActivity"
+            android:label="@string/title_activity_retroaction" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.SearchInfoActivity"
+            android:label="@string/title_activity_search_info" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.AboutActivity"
+            android:label="@string/title_activity_about" />
+        <activity
+            android:name="cn.edu.sjzc.student.uiActivity.EvealuationActivity"
+            android:label="@string/title_activity_evealuation" >
+        </activity>
+
+
+
+    </application>
+
+</manifest>

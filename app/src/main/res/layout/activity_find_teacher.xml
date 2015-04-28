@@ -1,0 +1,114 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DCDCDC"
+    android:orientation="vertical"
+    tools:context="cn.edu.sjzc.teacher.uiActivity.FindTeacherActivity">
+
+    <LinearLayout
+        android:id="@+id/upmost"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal"
+        android:background="#4169E1"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center_horizontal">
+
+            <FrameLayout
+                android:id="@+id/frameLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="7dp"
+                android:layout_weight="0">
+
+                <ImageButton
+                    android:id="@+id/findteacher_back"
+                    android:layout_width="18dp"
+                    android:layout_height="25dp"
+                    android:background="#00000000"
+                    android:src="@drawable/activity_back_selector" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:paddingBottom="7dp"
+                android:paddingTop="7dp"
+                android:text="@string/title_activity_find_teacher"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/group_01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="6dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:background="#FFFFFF"
+                android:gravity="center">
+
+
+                <EditText
+                    android:id="@+id/find_teacher_input"
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:paddingTop="5dp"
+                    android:hint="请输入要查询的内容"
+                    android:background="@android:color/transparent"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/find_teacher_but"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@id/find_teacher_input"
+                    android:background="@drawable/login_selector"
+                    android:text="查找"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#808A87" />
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/find_teacher_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants"
+            android:fadingEdge="none" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
