@@ -23,7 +23,7 @@ import cn.edu.sjzc.student.uiActivity.TeacherRankingInfoActivity;
 import cn.edu.sjzc.student.uiFragment.BaseFragment;
 import cn.edu.sjzc.student.uiFragment.FindAdviceFragment;
 import cn.edu.sjzc.student.uiFragment.FindEvaluationFragment;
-import cn.edu.sjzc.student.uiFragment.FindStudentFragment;
+import cn.edu.sjzc.student.uiFragment.FindTeacherFragment;
 import cn.edu.sjzc.student.uiFragment.HomePageFragment;
 import cn.edu.sjzc.student.uiFragment.MainTabActivity;
 import cn.edu.sjzc.student.uiFragment.PersonalCenterFragment;
@@ -53,7 +53,7 @@ public class ValueUtil {
     public static BaseFragment baseFragment;
     public static FindAdviceFragment findAdviceFragment;
     public static FindEvaluationFragment findEvaluationFragment;
-    public static FindStudentFragment findStudentFragment;
+    public static FindTeacherFragment findTeacherFragment;
     public static HomePageFragment homePageFragment;
     public static PersonalCenterFragment personalCenterFragment;
 

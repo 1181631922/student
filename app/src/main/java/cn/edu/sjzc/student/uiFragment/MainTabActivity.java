@@ -29,7 +29,7 @@ public class MainTabActivity extends FragmentActivity implements View.OnClickLis
     private MainExitDialog dialog1;
     private Dialog dialog;
 
-    private Class fragmentArray[] = {HomePageFragment.class, FindEvaluationFragment.class, FindAdviceFragment.class, FindStudentFragment.class, PersonalCenterFragment.class};
+    private Class fragmentArray[] = {HomePageFragment.class, FindEvaluationFragment.class, FindAdviceFragment.class, FindTeacherFragment.class, PersonalCenterFragment.class};
 
     private int mImageViewArray[] = {R.drawable.tab_home_btn, R.drawable.tab_message_btn, R.drawable.tab_selfinfo_btn,
             R.drawable.tab_square_btn, R.drawable.tab_more_btn};

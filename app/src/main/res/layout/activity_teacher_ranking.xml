@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="400dp">
 
-        <cn.edu.sjzc.teacher.view.HorizontalListView
+        <cn.edu.sjzc.student.view.HorizontalListView
             android:id="@+id/listview"
             android:paddingBottom="20dp"
             android:layout_width="wrap_content"
