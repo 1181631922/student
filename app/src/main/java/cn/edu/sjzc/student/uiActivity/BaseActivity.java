@@ -33,6 +33,7 @@ public class BaseActivity extends Activity {
 	public static String baseUrl = "http://hhhccckkk3.jsp.fjjsp.net/hck/";
 	public static String loginUrl = "http://hhhccckkk3.jsp.fjjsp.net/hck/login";
 	public static String registerUrl = "http://hhhccckkk3.jsp.fjjsp.net/hck/register";
+    public static boolean isForeground = false;
 
 	// 初始化HttpClient，并设置超时
 	public static HttpClient getHttpClient() {

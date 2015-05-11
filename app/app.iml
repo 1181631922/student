@@ -87,10 +87,11 @@
     <orderEntry type="library" exported="" name="ShareSDK-Core-2.5.9" level="project" />
     <orderEntry type="library" exported="" name="pinyin4j-2.5.0" level="project" />
     <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
-    <orderEntry type="library" exported="" name="mframework" level="project" />
     <orderEntry type="library" exported="" name="ShareSDK-SinaWeibo-2.5.9" level="project" />
+    <orderEntry type="library" exported="" name="mframework" level="project" />
     <orderEntry type="library" exported="" name="ShareSDK-Bluetooth-2.5.9" level="project" />
     <orderEntry type="library" exported="" name="ShareSDK-QQ-2.5.9" level="project" />
+    <orderEntry type="library" exported="" name="jpush-sdk-release1.7.3" level="project" />
     <orderEntry type="library" exported="" name="ShareSDK-Wechat-Moments-2.5.9" level="project" />
     <orderEntry type="library" exported="" name="ShareSDK-Wechat-Core-2.5.9" level="project" />
     <orderEntry type="library" exported="" name="ShareSDK-Wechat-Favorite-2.5.9" level="project" />
