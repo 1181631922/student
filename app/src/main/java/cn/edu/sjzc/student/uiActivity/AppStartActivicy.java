@@ -45,14 +45,14 @@ public class AppStartActivicy extends BaseActivity {
             }
         }, 1000);
 
-        new Thread(connectNet).start();
-
-        new Handler().postDelayed(new Runnable(){
-	  		@Override
-	  		public void run(){
-	  			new Thread(saveFileRunnable).start();
-	  		}
-	  	}, 5000);
+//        new Thread(connectNet).start();
+//
+//        new Handler().postDelayed(new Runnable(){
+//	  		@Override
+//	  		public void run(){
+//	  			new Thread(saveFileRunnable).start();
+//	  		}
+//	  	}, 5000);
     }
 
     public byte[] getImage(String path) throws Exception {

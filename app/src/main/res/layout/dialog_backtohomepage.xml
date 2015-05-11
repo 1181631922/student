@@ -51,7 +51,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:background="@drawable/left_btn_select"
-                android:text="@string/cancel" />
+                android:text="@string/dialogcancle" />
 
             <LinearLayout
                 android:layout_width="1dp"

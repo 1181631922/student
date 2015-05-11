@@ -31,6 +31,7 @@ import java.util.Map;
 import cn.edu.sjzc.student.R;
 import cn.edu.sjzc.student.adapter.StudentAdapter;
 import cn.edu.sjzc.student.bean.StudentUserBean;
+import cn.edu.sjzc.student.layout.PullToRefreshLayout;
 import cn.edu.sjzc.student.uiActivity.AdvStudentInfoActivity;
 import cn.edu.sjzc.student.uiActivity.FindTeacherActivity;
 import cn.edu.sjzc.student.util.PinyinUtils;
@@ -59,6 +60,7 @@ public class FindTeacherFragment extends BaseFragment implements
     private String sname, sphone;
     private RefreshableView refreshableView;
     private Button find_teacher;
+    private PullToRefreshLayout ptrl;
 
     private OverlayThread overlayThread = new OverlayThread();
     private SensorManager mSensorManager;
@@ -93,6 +95,44 @@ public class FindTeacherFragment extends BaseFragment implements
     private void initView() {
         this.find_teacher = (Button) getActivity().findViewById(R.id.find_teacher);
         this.find_teacher.setOnClickListener(this);
+        ptrl = ((PullToRefreshLayout) getActivity().findViewById(R.id.refresh_show_view));
+        ptrl.setOnRefreshListener(new MyListener());
+    }
+
+    public class MyListener implements PullToRefreshLayout.OnRefreshListener {
+
+        @Override
+        public void onRefresh(final PullToRefreshLayout pullToRefreshLayout) {
+            new Handler() {
+                @Override
+                public void handleMessage(Message msg) {
+//                    Thread loadThread = new Thread(new LoadThread());
+//                    loadThread.start();
+//                    show_progress.setVisibility(View.GONE);
+//                    showAdapter = new ShowAdapter(ShowActivity.this, showBeans);
+//                    show_listview.setAdapter(showAdapter);
+
+
+                    pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
+                }
+            }.sendEmptyMessageDelayed(0, 2000);
+        }
+
+        @Override
+        public void onLoadMore(final PullToRefreshLayout pullToRefreshLayout) {
+            new Handler() {
+                @Override
+                public void handleMessage(Message msg) {
+//                    Thread refreshThread = new Thread(new RefreshThread());
+//                    refreshThread.start();
+
+//                    showAdapter.notifyDataSetChanged();
+
+                    pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
+                }
+            }.sendEmptyMessageDelayed(0, 2000);
+        }
+
     }
 
     @Override
@@ -181,7 +221,6 @@ public class FindTeacherFragment extends BaseFragment implements
             switch (msg.what) {
                 case ROCKPOWER:
                     Toast.makeText(getActivity(), "检测到摇晃，执行操作！", Toast.LENGTH_SHORT).show();
-//                    Refresh();
                     break;
             }
         }
@@ -219,7 +258,6 @@ public class FindTeacherFragment extends BaseFragment implements
         myView = (StudentSideBarView) getActivity().findViewById(R.id.myView);
 
         overlay = (TextView) getActivity().findViewById(R.id.tvLetter);
-        refreshableView = (RefreshableView) getActivity().findViewById(R.id.events_refreshable);
         lvShow.setTextFilterEnabled(true);
         overlay.setVisibility(View.INVISIBLE);
 
@@ -276,24 +314,10 @@ public class FindTeacherFragment extends BaseFragment implements
         Arrays.sort(userinfoArray);
 
         studentUserBeans = Arrays.asList(userinfoArray);
-        Refresh();
 
     }
 
-    private void Refresh() {
-        refreshableView.setOnRefreshListener(new RefreshableView.PullToRefreshListener() {
-            @Override
-            public void onRefresh() {
-                try {
-                    Thread.sleep(2000);
-                    Log.d("-----------------------------------------------------------------------------------","onrefresh");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                refreshableView.finishRefreshing();
-            }
-        }, 0);
-    }
+
 
     protected class studentInfoOnItemClickListener implements
             OnItemClickListener {
