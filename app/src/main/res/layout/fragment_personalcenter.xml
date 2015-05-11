@@ -265,6 +265,32 @@
                 android:layout_height="1px"
                 android:layout_marginLeft="0dp"
                 android:background="#808A87" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:background="#C0C0C0" >
+            </LinearLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="0dp"
+                android:background="#808A87" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:background="#C0C0C0"
+             >
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/textview02"
+                android:layout_marginTop="7.0px"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/login_selector"
+                android:text="@string/loginOut"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 
@@ -30,10 +32,25 @@ public class BaseActivity extends Activity {
 	private static String COOKIE = "logincookie";
 	public static String SID = "login";
 	public static UserBean userBean = new UserBean();
-	public static String baseUrl = "http://hhhccckkk3.jsp.fjjsp.net/hck/";
-	public static String loginUrl = "http://hhhccckkk3.jsp.fjjsp.net/hck/login";
+	public static String baseUrl = "http://192.168.253.16:8080/st/person!";
+	public static String loginUrl = "http://192.168.253.16:8080/st/person!loginAndroid";
 	public static String registerUrl = "http://hhhccckkk3.jsp.fjjsp.net/hck/register";
     public static boolean isForeground = false;
+
+    // 检查网络状态
+    public boolean CheckNetworkState() {
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo.State mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
+        NetworkInfo.State wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
+        // 如果3G、wifi、2G等网络状态是连接的，则退出，否则显示提示信息进入网络设置界面
+        if (mobile == NetworkInfo.State.CONNECTED || mobile == NetworkInfo.State.CONNECTING) {
+            return true;
+        }
+        if (wifi == NetworkInfo.State.CONNECTED || wifi == NetworkInfo.State.CONNECTING) {
+            return true;
+        }
+        return false;
+    }
 
 	// 初始化HttpClient，并设置超时
 	public static HttpClient getHttpClient() {
@@ -44,37 +61,12 @@ public class BaseActivity extends Activity {
 		return client;
 	}
 
-	public static void removeCookie(Context context) {
-		CookieSyncManager.createInstance(context);
-		CookieManager cookieManager = CookieManager.getInstance();
-		cookieManager.removeAllCookie();
-		CookieSyncManager.getInstance().sync();
-	}
-
 	public static void savePreference(Context context, String key, String value) {
 		SharedPreferences preference = context.getSharedPreferences("All",
 				Context.MODE_PRIVATE);
 		Editor editor = preference.edit();
 		editor.putString(key, value);
 		editor.commit();
-	}
-
-	public static String getPreference(Context context, String key) {
-
-		SharedPreferences preference = context.getSharedPreferences("All",
-				Context.MODE_PRIVATE);
-
-		return preference.getString(key, "");
-
-	}
-
-	public static boolean isCookid(Context context) {
-
-		// SharedPreferences preference =
-		// context.getSharedPreferences(context.coo, mode)
-
-		return false;
-
 	}
 
 	public static Bitmap getHttpBitmap(String url) {

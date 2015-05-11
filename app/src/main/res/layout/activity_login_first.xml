@@ -3,7 +3,7 @@
     android:id="@+id/loginRoot"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/linear1"
@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="#C0C0C0"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <RelativeLayout
             android:id="@+id/relativelayout2"
@@ -23,12 +23,14 @@
             android:layout_weight="0.00"
             android:background="#FFFFFF"
             android:paddingBottom="10.0px"
-            android:paddingTop="21.0px" >
+            android:paddingTop="21.0px">
 
             <ImageView
                 android:id="@+id/faceImg"
                 android:layout_width="68dp"
                 android:layout_height="68dp"
+                android:layout_marginTop="5.0dip"
+                android:layout_marginLeft="30.0dip"
                 android:background="@drawable/icon" />
 
             <EditText
@@ -38,7 +40,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginBottom="5.0dip"
                 android:layout_marginLeft="5.0dip"
-                android:layout_marginRight="5.0dip"
+                android:layout_marginRight="35.0dip"
                 android:layout_marginTop="5.0dip"
                 android:layout_toRightOf="@+id/faceImg"
                 android:background="#FAEBD7"
@@ -96,32 +98,32 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/login_btn_login"
                 android:button="@drawable/btn_check"
-                android:paddingLeft="39.0px"
+                android:paddingLeft="40.0px"
+                android:layout_marginLeft="30dp"
                 android:text="@string/opt_remember"
                 android:textColor="#ff222222"
                 android:textSize="16.0sp" />
-
+            <ProgressBar
+                android:id="@+id/login_progress"
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/login_edit_pwd"
+                android:layout_marginTop="10dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:visibility="gone"
+                android:layout_gravity="center_horizontal" />
             <Button
                 android:id="@+id/login_btn_login"
                 android:layout_width="90.0dp"
                 android:layout_height="35dp"
                 android:layout_below="@+id/textview02"
                 android:layout_marginTop="7.0px"
-                android:layout_toLeftOf="@+id/login_btn_zhuce"
-
+                android:layout_toRightOf="@+id/login_cb_savepwd"
+                android:layout_marginLeft="100dp"
                 android:background="@drawable/login_selector"
                 android:text="@string/login" />
 
 
-            <Button
-                android:id="@+id/login_btn_zhuce"
-                android:layout_width="90.0dp"
-                android:layout_height="35dp"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/textview02"
-                android:background="@drawable/login_selector"
-                android:layout_marginTop="7.0px"
-                android:text="@string/zhuce" />
         </RelativeLayout>
     </LinearLayout>
 
