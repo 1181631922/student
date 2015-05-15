@@ -25,16 +25,19 @@ import java.util.Date;
 import cn.edu.sjzc.student.bean.UserBean;
 
 public class BaseActivity extends Activity {
+    public static String baseUrl = "http://172.16.238.8:8080/st/person!";
+    public static String loginUrl = baseUrl+"loginAndroid";
+    public static String personInfomationUrl = baseUrl+"findPersonByNumber?number=";
+
+
 
 	public static final int REQUEST_TIMEOUT = 5 * 1000;// 设置请求超时10秒钟
 	public static final int SO_TIMEOUT = 10 * 1000; // 设置等待数据超时时间10秒钟
 	public static int LOGIN_OK = 1;
-	private static String COOKIE = "logincookie";
+	public static String COOKIE = "logincookie";
 	public static String SID = "login";
 	public static UserBean userBean = new UserBean();
-	public static String baseUrl = "http://192.168.253.16:8080/st/person!";
-	public static String loginUrl = "http://192.168.253.16:8080/st/person!loginAndroid";
-	public static String registerUrl = "http://hhhccckkk3.jsp.fjjsp.net/hck/register";
+
     public static boolean isForeground = false;
 
     // 检查网络状态

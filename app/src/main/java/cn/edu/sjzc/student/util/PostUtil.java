@@ -32,7 +32,7 @@ public class PostUtil {
         //第一次一般是还未被赋值，若有值则将SessionId发给服务器
         if (null != SESSIONID) {//"JSESSIONID="+
             conn.setRequestProperty("Cookie", SESSIONID);
-            Log.d("--------------------------------------",SESSIONID);
+            Log.d("------------------session--------------------",SESSIONID);
         }
         conn.setConnectTimeout(10000);
         // 这是请求方式为POST

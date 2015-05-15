@@ -1,22 +1,17 @@
 package cn.edu.sjzc.student.uiActivity;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo.State;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.Settings;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -25,28 +20,20 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.cookie.Cookie;
-import org.apache.http.impl.client.AbstractHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URLEncoder;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import cn.edu.sjzc.student.R;
+import cn.edu.sjzc.student.app.UserApplication;
+import cn.edu.sjzc.student.dialog.NetCheckDialog;
 import cn.edu.sjzc.student.uiFragment.MainTabActivity;
 import cn.edu.sjzc.student.util.PostUtil;
+import cn.jpush.android.api.JPushInterface;
 
 public class LoginDemoActivity extends BaseActivity implements OnClickListener {
     /**
@@ -64,10 +51,11 @@ public class LoginDemoActivity extends BaseActivity implements OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login_first);
-//		初始化视图控�?
+//		初始化视图控
         initView();
-        // 初始化数�?
+        // 初始化数据
         LoadUserdata();
     }
 
@@ -128,9 +116,14 @@ public class LoginDemoActivity extends BaseActivity implements OnClickListener {
         switch (v.getId()) {
             // 登录
             case R.id.login_btn_login:
-                login_progress.setVisibility(View.VISIBLE);
-                Thread loginThread = new Thread(new LoginThread());
-                loginThread.start();
+                if (CheckNetworkState()) {
+                    login_progress.setVisibility(View.VISIBLE);
+                    Thread loginThread = new Thread(new LoginThread());
+                    loginThread.start();
+                } else {
+                    NetCheckDialog netCheckDialog = new NetCheckDialog(this, R.style.mystyle, R.layout.dialog_custom);
+                    netCheckDialog.show();
+                }
                 break;
             default:
                 break;
@@ -144,13 +137,30 @@ public class LoginDemoActivity extends BaseActivity implements OnClickListener {
         Map<String, String> map = new LinkedHashMap<String, String>();
         map.put("number", username);
         map.put("password", password);
-        StringBuilder url = new StringBuilder(loginUrl);
+//        StringBuilder url = new StringBuilder(loginUrl);
         try {
             String backMsg = PostUtil.postData(loginUrl, map);
             Log.d("----------backmsg----------", backMsg);
             try {
-                JSONObject jsonObjece = new JSONObject(backMsg);
-//                jsonObjece
+                JSONObject jsonObject = new JSONObject(backMsg);
+                int state = jsonObject.getInt("state");
+                if (state == 1) {
+                    String number = jsonObject.getString("number");
+                    String name = jsonObject.getString("name");
+                    int age = jsonObject.getInt("age");
+                    SharedPreferences.Editor userdata = getSharedPreferences(UserApplication.USER_DATA,0).edit();
+                    userdata.putString(UserApplication.USER_DATA_USERNAME, name);
+                    userdata.putString(UserApplication.USER_DATA_NUMBER, number);
+                    userdata.putString(UserApplication.USER_DATA_PASSWORD, password);
+                    userdata.putBoolean(UserApplication.USER_DATA_LOGINED, true);
+                    userdata.commit();
+                    responseMsg = 1 + "";
+                    return true;
+                }
+                if (state == 0) {
+                    responseMsg = 0 + "";
+                    return true;
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -246,8 +256,7 @@ public class LoginDemoActivity extends BaseActivity implements OnClickListener {
     Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case 0:
-                    mDialog.cancel();
+                case 1:
                     login_progress.setVisibility(View.GONE);
                     Toast.makeText(getApplicationContext(), "登录成功", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent();
@@ -255,17 +264,31 @@ public class LoginDemoActivity extends BaseActivity implements OnClickListener {
                     startActivity(intent);
                     finish();
                     break;
-                case 1:
+                case 0:
                     login_progress.setVisibility(View.GONE);
-                    Toast.makeText(getApplicationContext(), "密码错误", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "登录失败", Toast.LENGTH_SHORT).show();
                     break;
                 case 2:
                     login_progress.setVisibility(View.GONE);
-                    Toast.makeText(getApplicationContext(), "URL验证失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "服务器维护中", Toast.LENGTH_SHORT).show();
                     break;
             }
         }
     };
+
+    @Override
+    protected void onResume() {
+        isForeground = true;
+        super.onResume();
+        JPushInterface.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        isForeground = false;
+        super.onPause();
+        JPushInterface.onPause(this);
+    }
     /**
      * MD5单向加密�?2位，用于加密密码，因为明文密码在信道中传输不安全，明文保存在本地也不安全
      *

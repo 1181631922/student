@@ -1,2 +1,28 @@
 1.上传git
 2.加入了分享
+
+API文档
+1.登录
+http://172.16.238.8:8080/st/person!loginAndroid?number=0&password=1
+失败：{
+      "state" : "0"
+   }
+成功：{
+      "age" : 23,
+      "name" : "???",
+      "state" : "1",
+      "number" : "0"
+   }
+2.访问个人信息
+http://172.16.238.8:8080/st/person!findPersonByNumber?number=0
+{
+   "sex" : "",
+   "idNum" : "",
+   "address" : null,
+   "tel" : "",
+   "e-mail" : "",
+   "age" : 23,
+   "name" : "???",
+   "number" : "0",
+   "major" : "?????"
+}
