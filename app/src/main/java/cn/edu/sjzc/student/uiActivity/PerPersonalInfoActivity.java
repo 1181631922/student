@@ -46,7 +46,6 @@ public class PerPersonalInfoActivity extends BaseActivity implements
 
         initView();
         initData();
-//        loadData();
         Thread loadThread = new Thread(new LoadThread());
         loadThread.start();
     }

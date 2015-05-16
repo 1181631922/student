@@ -33,11 +33,6 @@ public class BaseActivity extends Activity {
 
 	public static final int REQUEST_TIMEOUT = 5 * 1000;// 设置请求超时10秒钟
 	public static final int SO_TIMEOUT = 10 * 1000; // 设置等待数据超时时间10秒钟
-	public static int LOGIN_OK = 1;
-	public static String COOKIE = "logincookie";
-	public static String SID = "login";
-	public static UserBean userBean = new UserBean();
-
     public static boolean isForeground = false;
 
     // 检查网络状态

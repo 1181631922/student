@@ -133,11 +133,9 @@ public class LoginDemoActivity extends BaseActivity implements OnClickListener {
     private boolean loginServer(String username, String password)
             throws UnsupportedEncodingException {
         boolean loginValidate = false;
-        // 使用apache HTTP客户端实�?
         Map<String, String> map = new LinkedHashMap<String, String>();
         map.put("number", username);
         map.put("password", password);
-//        StringBuilder url = new StringBuilder(loginUrl);
         try {
             String backMsg = PostUtil.postData(loginUrl, map);
             Log.d("----------backmsg----------", backMsg);
