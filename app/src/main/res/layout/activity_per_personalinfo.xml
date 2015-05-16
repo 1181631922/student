@@ -391,7 +391,7 @@
                 android:layout_marginTop="15dp"
                 android:background="@drawable/login_selector"
                 android:gravity="center"
-                android:text="确定更改"
+                android:text="修改个人信息"
                 android:textColor="@android:color/white"
                 android:textSize="15sp" />
         </LinearLayout>

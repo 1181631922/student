@@ -26,3 +26,5 @@ http://172.16.238.8:8080/st/person!findPersonByNumber?number=0
    "number" : "0",
    "major" : "?????"
 }
+3.修改个人密码
+http://172.16.238.8:8080/st/person!updatePassword.action?old_password=2&new_password=1
