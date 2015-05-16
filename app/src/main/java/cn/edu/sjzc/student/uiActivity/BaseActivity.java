@@ -28,6 +28,7 @@ public class BaseActivity extends Activity {
     public static String baseUrl = "http://172.16.238.8:8080/st/person!";
     public static String loginUrl = baseUrl+"loginAndroid";
     public static String personInfomationUrl = baseUrl+"findPersonByNumber?number=";
+    public static String changePasswordUrl=baseUrl+"updatePasswordAndroid.action";
 
 
 

@@ -25,6 +25,7 @@ public class PostUtil {
             if (paramStr.length() == 0)
                 return "";
             paramStr = paramStr.substring(1, paramStr.length());
+            Log.d("--------paramStr----------",paramStr);
         }
         byte[] data = paramStr.getBytes();
         URL url = new URL(address);

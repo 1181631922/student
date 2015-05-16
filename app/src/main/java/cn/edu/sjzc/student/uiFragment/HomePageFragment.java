@@ -469,7 +469,6 @@ public class HomePageFragment extends BaseFragment {
     private class MyPagerAdapter extends PagerAdapter {
         @Override
         public int getCount() {
-            System.out.println("getCount");
             return images.length;
         }
 
@@ -493,7 +492,6 @@ public class HomePageFragment extends BaseFragment {
 
         @Override
         public boolean isViewFromObject(View arg0, Object arg1) {
-            System.out.println("isViewFromObject");
             return arg0 == arg1;
         }
 

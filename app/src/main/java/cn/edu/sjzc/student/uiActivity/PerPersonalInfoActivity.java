@@ -82,8 +82,6 @@ public class PerPersonalInfoActivity extends BaseActivity implements
     }
 
     private void loadData() {
-        HttpClient httpClient = new DefaultHttpClient();
-        HttpGet request;
         try {
             String PERSONALINFOURL = personInfomationUrl + number;
             String backMsg = PostUtil.postData(PERSONALINFOURL, null);

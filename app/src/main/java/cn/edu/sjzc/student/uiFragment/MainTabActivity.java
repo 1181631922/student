@@ -35,11 +35,12 @@ public class MainTabActivity extends FragmentActivity implements View.OnClickLis
             R.drawable.tab_square_btn, R.drawable.tab_more_btn};
 
     private String mTextviewArray[] = {"首页", "查看评估", "评价老师", "查找教师", "个人信息"};
-
+    public static MainTabActivity instance = null;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main_tab_layout);
+        instance = this;
         initView();
     }
 
