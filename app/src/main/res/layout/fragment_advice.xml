@@ -6,25 +6,29 @@
     android:orientation="vertical">
 
 
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/upmost"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical">
+        <cn.edu.sjzc.student.layout.PullToRefreshLayout
+            android:id="@+id/refresh_advice_view"
+            android:layout_width="match_parent"
+            android:background="#DCDCDC"
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textView111"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tab1"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-        </LinearLayout>
-    </ScrollView>
+            <include layout="@layout/refresh_head" />
+
+            <cn.edu.sjzc.student.view.PullableListView
+                android:id="@+id/advice_show"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#DCDCDC"
+                android:dividerHeight="1px" />
+
+            <include layout="@layout/load_more" />
+
+        </cn.edu.sjzc.student.layout.PullToRefreshLayout>
+    </LinearLayout>
 
 </LinearLayout>

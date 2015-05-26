@@ -50,25 +50,16 @@ public class FindTeacherAdapter extends BaseAdapter {
 		// TODO Auto-generated method stub
 		
 		View view = convertView;
-		
 		ViewHolder holder = null;
-		
 		if(view == null){
-			
 			view = LayoutInflater.from(context).inflate(R.layout.item_listview_teachet_find, null);
-			
 			holder = new ViewHolder();
 			view.setTag(holder);
-			
 			holder.item_find_teacher_name = (TextView) view.findViewById(R.id.item_find_teacher_name);
 			holder.item_find_teacher_phone = (TextView) view.findViewById(R.id.item_find_teacher_phone);
-			
-			
-			
 		}else{
 			holder = (ViewHolder) convertView.getTag();
 		}
-		
 		holder.item_find_teacher_name.setText(FindTeacherBeans.get(position).getFindName());
 		holder.item_find_teacher_phone.setText(FindTeacherBeans.get(position).getFindPhone());
 		

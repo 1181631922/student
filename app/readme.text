@@ -28,3 +28,5 @@ http://172.16.238.8:8080/st/person!findPersonByNumber?number=0
 }
 3.修改个人密码
 172.16.238.8:8080/st/person!updatePasswordAndroid.action?old_password=2&new_password=1
+3.查看课程
+172.16.238.8:8080/st/course!findCourseAndroid?number=0

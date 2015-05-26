@@ -2,12 +2,14 @@ package cn.edu.sjzc.student.uiActivity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 
@@ -24,8 +26,8 @@ import java.util.Date;
 
 import cn.edu.sjzc.student.bean.UserBean;
 
-public class BaseActivity extends Activity {
-    public static String baseUrl = "http://172.16.238.8:8080/st/person!";
+public class BaseActivity extends Activity implements View.OnClickListener {
+    public static String baseUrl = "http://172.16.192.3:8080/st/person!";
     public static String loginUrl = baseUrl+"loginAndroid";
     public static String personInfomationUrl = baseUrl+"findPersonByNumber?number=";
     public static String changePasswordUrl=baseUrl+"updatePasswordAndroid.action";
@@ -104,4 +106,8 @@ public class BaseActivity extends Activity {
         return formatter.format(date);
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }

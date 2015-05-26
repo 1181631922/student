@@ -7,25 +7,29 @@ import android.view.Window;
 import android.widget.ImageButton;
 
 import cn.edu.sjzc.student.R;
-
+//查看课表
 public class PerScheduleActivity extends BaseActivity implements OnClickListener {
 
 	private ImageButton schedule_back;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);// �������ڷ���
-		requestWindowFeature(Window.FEATURE_NO_TITLE);// ȥ��������
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.setContentView(R.layout.activity_per_schedule);
 
-		init();
+		initView();
+        initData();
 	}
 
-	private void init() {
-		ImageButton schedule_back = (ImageButton) this
-				.findViewById(R.id.schedule_back);
+	private void initView() {
+		ImageButton schedule_back = (ImageButton) this.findViewById(R.id.schedule_back);
 		schedule_back.setOnClickListener(this);
 	}
+
+    private void initData(){
+
+    }
 
 	@Override
 	public void onClick(View v) {
