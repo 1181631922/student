@@ -16,10 +16,11 @@ import cn.edu.sjzc.student.R;
 public class AdvStudentInfoActivity extends BaseActivity implements OnClickListener {
 
     private ImageButton studentinfo_back;
-    private TextView student_info_name, student_info_phone;
+    private TextView student_info_name, student_info_phone, adv_info_name, adv_info_phone, adv_info_office, adv_info_email;
     private Button adv_message_to, adv_phone_to;
     private String student_name, student_phone;
     private EditText adv_info_message;
+    private String office, email, teacher_name, tel, teacher_id;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,30 +33,30 @@ public class AdvStudentInfoActivity extends BaseActivity implements OnClickListe
     }
 
     private void initData() {
-
         Intent it = this.getIntent();
+        teacher_name = it.getStringExtra("teacher_name");
+        tel = it.getStringExtra("tel");
+        office = it.getStringExtra("office");
+        email = it.getStringExtra("email");
 
-        student_name = it.getStringExtra("student_name");
-        student_phone = it.getStringExtra("student_phone");
-
-        this.student_info_name.setText(student_name);
-        this.student_info_phone.setText(student_phone);
+        adv_info_name.setText(teacher_name);
+        adv_info_phone.setText(tel);
+        adv_info_office.setText(office);
+        adv_info_email.setText(email);
     }
 
     private void initView() {
+        adv_info_name = (TextView) findViewById(R.id.adv_info_name);
+        adv_info_phone = (TextView) findViewById(R.id.adv_info_phone);
+        adv_info_office = (TextView) findViewById(R.id.adv_info_office);
+        adv_info_email = (TextView) findViewById(R.id.adv_info_email);
         ImageButton changepassword_back = (ImageButton) this.findViewById(R.id.studentinfo_back);
         changepassword_back.setOnClickListener(this);
         this.adv_message_to = (Button) this.findViewById(R.id.adv_message_to);
         this.adv_message_to.setOnClickListener(this);
         this.adv_phone_to = (Button) this.findViewById(R.id.adv_phone_to);
         this.adv_phone_to.setOnClickListener(this);
-
-        this.student_info_name = (TextView) super.findViewById(R.id.adv_info_name);
-        this.student_info_phone = (TextView) super.findViewById(R.id.adv_info_phone);
-
         this.adv_info_message = (EditText) AdvStudentInfoActivity.this.findViewById(R.id.adv_info_message);
-
-
     }
 
     @Override
@@ -68,10 +69,10 @@ public class AdvStudentInfoActivity extends BaseActivity implements OnClickListe
                 break;
             case R.id.adv_message_to:
                 String info_message = adv_info_message.getText().toString();
-                sendSMS(student_phone, info_message);
+                sendSMS(tel, info_message);
                 break;
             case R.id.adv_phone_to:
-                phoneBody(student_phone);
+                phoneBody(tel);
                 break;
 
             default:
@@ -89,7 +90,6 @@ public class AdvStudentInfoActivity extends BaseActivity implements OnClickListe
      * 此方法可以传两个参数
      *
      * @param number 号码
-     * @param detail 内容
      */
     private void sendSMS(String number, String smsBody)
 

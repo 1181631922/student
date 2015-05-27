@@ -4,16 +4,16 @@ public class StudentUserBean implements Comparable {
 
 	private String userName;
 	private String phoneNum;
-	
+
 	private String py;
-	
-	
-	
+
+
+
 	public StudentUserBean(String userName, String phoneNum,String py) {
 		super();
 		this.userName = userName;
 		this.phoneNum = phoneNum;
-	
+
 		this.py=py;
 	}
 	public String getUserName() {
@@ -42,12 +42,12 @@ public class StudentUserBean implements Comparable {
 	@Override
 	public int compareTo(Object another) {
 		// TODO Auto-generated method stub
-		
+
 		StudentUserBean s = (StudentUserBean) another;
 		return 0;
 	}
-	
-	
-	
-	
+
+
+
+
 }

@@ -3,6 +3,7 @@ package cn.edu.sjzc.student.uiFragment;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -19,28 +20,38 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import cn.edu.sjzc.student.R;
 import cn.edu.sjzc.student.adapter.StudentAdapter;
+import cn.edu.sjzc.student.app.UserApplication;
+import cn.edu.sjzc.student.bean.ScheduleBean;
 import cn.edu.sjzc.student.bean.StudentUserBean;
 import cn.edu.sjzc.student.layout.PullToRefreshLayout;
 import cn.edu.sjzc.student.uiActivity.AdvStudentInfoActivity;
 import cn.edu.sjzc.student.uiActivity.FindTeacherActivity;
 import cn.edu.sjzc.student.util.PinyinUtils;
+import cn.edu.sjzc.student.util.PostUtil;
 import cn.edu.sjzc.student.view.RefreshableView;
 import cn.edu.sjzc.student.view.StudentSideBarView;
 import cn.edu.sjzc.student.view.StudentSideBarView.OnTouchingLetterChangedListener;
 
 public class FindTeacherFragment extends BaseFragment implements
-        OnTouchingLetterChangedListener, View.OnClickListener ,SensorEventListener {
+        OnTouchingLetterChangedListener, View.OnClickListener, SensorEventListener {
 
     public static BaseFragment newInstance(int index) {
         BaseFragment fragment = new FindTeacherFragment();
@@ -52,7 +63,7 @@ public class FindTeacherFragment extends BaseFragment implements
     }
 
     private ListView lvShow;
-    private List<StudentUserBean> studentUserBeans;
+    private List<StudentUserBean> studentUserBeans = new ArrayList<StudentUserBean>();
     private TextView overlay;
     private StudentSideBarView myView;
     private StudentAdapter adapter;
@@ -61,6 +72,11 @@ public class FindTeacherFragment extends BaseFragment implements
     private RefreshableView refreshableView;
     private Button find_teacher;
     private PullToRefreshLayout ptrl;
+    private String number, office, email, teacher_name, tel, teacher_id;
+    private String FindTeacherUrl = aBaseUrl + "course!findTeacherAndroid.action";
+    private boolean isNet = false;
+    private ProgressBar findteacher_progressbar;
+
 
     private OverlayThread overlayThread = new OverlayThread();
     private SensorManager mSensorManager;
@@ -69,13 +85,9 @@ public class FindTeacherFragment extends BaseFragment implements
     private final int ROCKPOWER = 15;
 
 
-    // public String[] userinfoArray;
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_findteacher, container,
-                false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_findteacher, container, false);
         return root;
     }
 
@@ -83,16 +95,105 @@ public class FindTeacherFragment extends BaseFragment implements
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initRock();
-        init();
         initView();
-
+        initData();
+        findteacher_progressbar.setVisibility(View.VISIBLE);
+        Thread loadThread = new Thread(new LoadThread());
+        loadThread.start();
     }
-    private void initRock(){
-        mSensorManager=(SensorManager)getActivity().getSystemService(Context.SENSOR_SERVICE);
-        mVibrator=(Vibrator)getActivity().getSystemService(Service.VIBRATOR_SERVICE);
+
+    private void initData() {
+        SharedPreferences userdata = getActivity().getSharedPreferences(UserApplication.USER_DATA, 0);
+        number = userdata.getString(UserApplication.USER_DATA_NUMBER, "");
+    }
+
+    class LoadThread implements Runnable {
+        @Override
+        public void run() {
+            loadData();
+        }
+    }
+
+    private void loadData() {
+        studentUserBeans.clear();
+        Map<String, String> map = new LinkedHashMap<String, String>();
+        map.put("number", number);
+        try {
+            String backMsg = PostUtil.postData(FindTeacherUrl, map);
+            Log.d("-------couse-----------", backMsg);
+            try {
+                JSONObject jsonObject = new JSONObject(backMsg);
+                JSONArray coursearray = jsonObject.getJSONArray("content");
+                for (int i = 0; i < coursearray.length(); i++) {
+                    StudentUserBean studentUserBean = new StudentUserBean(teacher_name, tel, null);
+                    JSONObject studentuserobj = coursearray.getJSONObject(i);
+                    studentUserBean.setUserName(studentuserobj.getString("teacher_name"));
+                    studentUserBean.setPhoneNum(studentuserobj.getString("tel"));
+                    studentUserBean.setPy(studentuserobj.getString("teacher_name"));
+
+                    Map<String, Object> mapcourse = new HashMap<String, Object>();
+                    mapcourse.put("teacher_name", studentuserobj.getString("teacher_name"));
+                    mapcourse.put("tel", studentuserobj.getString("tel"));
+                    mapcourse.put("office", studentuserobj.getString("office"));
+                    mapcourse.put("email", studentuserobj.getString("email"));
+                    mapcourse.put("teacher_id", studentuserobj.getString("teacher_id"));
+                    studentList.add(mapcourse);
+                    studentUserBeans.add(studentUserBean);
+
+
+                }
+                isNet = true;
+            } catch (JSONException e) {
+                e.printStackTrace();
+                isNet = false;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            isNet = false;
+        }
+        Message message = Message.obtain();
+        if (isNet) {
+            message.what = 0;
+            findhandler.sendMessage(message);
+        } else {
+            message.what = 1;
+            findhandler.sendMessage(message);
+        }
+    }
+
+    Handler findhandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 0:
+                    initContent();
+                    break;
+            }
+        }
+    };
+
+    public void initContent() {
+        findteacher_progressbar.setVisibility(View.GONE);
+        Log.i("coder", "studentUserBeans.size" + studentUserBeans.size());
+        adapter = new StudentAdapter(getActivity(), studentUserBeans);
+        lvShow.setAdapter(adapter);
+        myView.setOnTouchingLetterChangedListener(this);
+        lvShow.setOnItemClickListener(new studentInfoOnItemClickListener());
+    }
+
+    private void initRock() {
+        mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+        mVibrator = (Vibrator) getActivity().getSystemService(Service.VIBRATOR_SERVICE);
     }
 
     private void initView() {
+        lvShow = (ListView) getActivity().findViewById(R.id.lvShow);
+        myView = (StudentSideBarView) getActivity().findViewById(R.id.myView);
+        overlay = (TextView) getActivity().findViewById(R.id.tvLetter);
+        lvShow.setTextFilterEnabled(true);
+        overlay.setVisibility(View.INVISIBLE);
+        findteacher_progressbar = (ProgressBar) getActivity().findViewById(R.id.findteacher_progressbar);
         this.find_teacher = (Button) getActivity().findViewById(R.id.find_teacher);
         this.find_teacher.setOnClickListener(this);
         ptrl = ((PullToRefreshLayout) getActivity().findViewById(R.id.refresh_show_view));
@@ -106,13 +207,6 @@ public class FindTeacherFragment extends BaseFragment implements
             new Handler() {
                 @Override
                 public void handleMessage(Message msg) {
-//                    Thread loadThread = new Thread(new LoadThread());
-//                    loadThread.start();
-//                    show_progress.setVisibility(View.GONE);
-//                    showAdapter = new ShowAdapter(ShowActivity.this, showBeans);
-//                    show_listview.setAdapter(showAdapter);
-
-
                     pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
                 }
             }.sendEmptyMessageDelayed(0, 2000);
@@ -123,11 +217,6 @@ public class FindTeacherFragment extends BaseFragment implements
             new Handler() {
                 @Override
                 public void handleMessage(Message msg) {
-//                    Thread refreshThread = new Thread(new RefreshThread());
-//                    refreshThread.start();
-
-//                    showAdapter.notifyDataSetChanged();
-
                     pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
                 }
             }.sendEmptyMessageDelayed(0, 2000);
@@ -160,6 +249,7 @@ public class FindTeacherFragment extends BaseFragment implements
             // 第一个参数是Listener，第二个参数是所得传感器类型，第三个参数值获取传感器信息的频率
         }
     }
+
     @Override
     public void onStop() {
         super.onStop();
@@ -179,7 +269,6 @@ public class FindTeacherFragment extends BaseFragment implements
     public void onSensorChanged(SensorEvent event) {
 
     }
-
 
 
     /**
@@ -253,71 +342,6 @@ public class FindTeacherFragment extends BaseFragment implements
 
     }
 
-    public void init() {
-        lvShow = (ListView) getActivity().findViewById(R.id.lvShow);
-        myView = (StudentSideBarView) getActivity().findViewById(R.id.myView);
-
-        overlay = (TextView) getActivity().findViewById(R.id.tvLetter);
-        lvShow.setTextFilterEnabled(true);
-        overlay.setVisibility(View.INVISIBLE);
-
-        getUserInfos();
-
-        Log.i("coder", "studentUserBeans.size" + studentUserBeans.size());
-        adapter = new StudentAdapter(getActivity(), studentUserBeans);
-
-        lvShow.setAdapter(adapter);
-
-        myView.setOnTouchingLetterChangedListener(this);
-
-        lvShow.setOnItemClickListener(new studentInfoOnItemClickListener());
-    }
-
-    public void getUserInfos() {
-        StudentUserBean[] userinfoArray = new StudentUserBean[]{
-                new StudentUserBean("韩冰", "13303116239", PinyinUtils.getAlpha("韩冰")),
-                new StudentUserBean("张海春", "18765432345", PinyinUtils.getAlpha("张海春")),
-                new StudentUserBean("及徐冰", "18765432345", PinyinUtils.getAlpha("及徐冰")),
-                new StudentUserBean("邻里中", "18765432345", PinyinUtils.getAlpha("邻里中")),
-                new StudentUserBean("宋红卫", "18765432345", PinyinUtils.getAlpha("宋红卫")),
-                new StudentUserBean("何东滨", "18765432345", PinyinUtils.getAlpha("何东滨")),
-                new StudentUserBean("刘絮凝", "18765432345", PinyinUtils.getAlpha("刘絮凝")),
-                new StudentUserBean("王丽娜", "18765432345", PinyinUtils.getAlpha("王丽娜")),
-                new StudentUserBean("长子李", "18765432345", PinyinUtils.getAlpha("长子李")),
-                new StudentUserBean("孙警务", "18765432345", PinyinUtils.getAlpha("孙警务")),
-                new StudentUserBean("张军", "18765432345", PinyinUtils.getAlpha("张军")),
-                new StudentUserBean("张兴华", "18765432345", PinyinUtils.getAlpha("张兴华")),
-                new StudentUserBean("赵颖号", "18765432345", PinyinUtils.getAlpha("赵颖号")),
-                new StudentUserBean("刘志国", "18765432345", PinyinUtils.getAlpha("刘志国")),
-                new StudentUserBean("段理应", "18765432345", PinyinUtils.getAlpha("段理应")),
-                new StudentUserBean("尽情用", "18765432345", PinyinUtils.getAlpha("尽情用")),
-                new StudentUserBean("利亚", "18765432345", PinyinUtils.getAlpha("利亚")),
-                new StudentUserBean("问这", "18765432345", PinyinUtils.getAlpha("问这")),
-                new StudentUserBean("董倩", "18765432345", PinyinUtils.getAlpha("董倩")),
-                new StudentUserBean("张舒梅", "18765432345", PinyinUtils.getAlpha("张舒梅")),
-                new StudentUserBean("与帖中", "18765432345", PinyinUtils.getAlpha("与帖中")),
-                new StudentUserBean("梦军营", "18765432345", PinyinUtils.getAlpha("梦军营")),
-                new StudentUserBean("梨园", "18765432345", PinyinUtils.getAlpha("梨园")),
-                new StudentUserBean("硫化", "18765432345", PinyinUtils.getAlpha("硫化"))};
-
-        for (int i = 0; i < userinfoArray.length; i++) {
-
-            StudentUserBean su = new StudentUserBean(sname, sphone, null);
-            String st = userinfoArray[i].getUserName();
-            String sp = userinfoArray[i].getPhoneNum();
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put("s_name", st);
-            map.put("s_phone", sp);
-            studentList.add(map);
-        }
-
-        Arrays.sort(userinfoArray);
-
-        studentUserBeans = Arrays.asList(userinfoArray);
-
-    }
-
-
 
     protected class studentInfoOnItemClickListener implements
             OnItemClickListener {
@@ -326,23 +350,19 @@ public class FindTeacherFragment extends BaseFragment implements
         public void onItemClick(AdapterView<?> parent, View view, int position,
                                 long id) {
             // TODO Auto-generated method stub
-
-            Intent it_student_info = new Intent(getActivity(),
-                    AdvStudentInfoActivity.class);
+            Intent it_student_info = new Intent(getActivity(), AdvStudentInfoActivity.class);
             for (int i = 0; i <= position; i++) {
                 if (position == i) {
                     Map map = (Map) studentList.get(i);
-                    String mstu = (String) map.get("s_name");
-                    String mpho = (String) map.get("s_phone");
-                    it_student_info.putExtra("student_name", mstu);
-                    it_student_info.putExtra("student_phone", mpho);
+                    it_student_info.putExtra("teacher_name", (String) map.get("teacher_name"));
+                    it_student_info.putExtra("tel", (String) map.get("tel"));
+                    it_student_info.putExtra("office", (String) map.get("office"));
+                    it_student_info.putExtra("email", (String) map.get("email"));
+                    it_student_info.putExtra("teacher_id", (String) map.get("teacher_id"));
                 }
             }
-
             startActivity(it_student_info);
-
         }
-
     }
 
     private Handler handler1 = new Handler() {
