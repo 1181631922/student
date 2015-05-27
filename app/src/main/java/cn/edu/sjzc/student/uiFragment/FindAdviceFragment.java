@@ -3,11 +3,22 @@ package cn.edu.sjzc.student.uiFragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import cn.edu.sjzc.student.R;
+import cn.edu.sjzc.student.bean.ScheduleBean;
+import cn.edu.sjzc.student.util.PostUtil;
 
 public class FindAdviceFragment extends BaseFragment implements View.OnClickListener {
 
@@ -22,10 +33,38 @@ public class FindAdviceFragment extends BaseFragment implements View.OnClickList
 
     private View layoutView;
     private FragmentTabHost mTabHost;
+    private String COURSE_URL = aBaseUrl + "course!findCourseAndroid";
+    private String number, courseid, title;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        loadData();
+    }
+
+    private void loadData() {
+        Map<String, String> map = new LinkedHashMap<String, String>();
+        map.put("number", "20111308011");
+        try {
+            String backMsg = PostUtil.postData(COURSE_URL, map);
+            Log.d("-------couse-----------", backMsg);
+            try {
+                JSONObject jsonObject = new JSONObject(backMsg);
+                JSONArray coursearray = jsonObject.getJSONArray("content");
+                for (int i = 0; i < coursearray.length(); i++) {
+                    ScheduleBean scheduleBean = new ScheduleBean(courseid, title);
+                    JSONObject shceduleobj = coursearray.getJSONObject(i);
+                    String id = shceduleobj.getString("courseId");
+                    String name = shceduleobj.getString("coursename");
+
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

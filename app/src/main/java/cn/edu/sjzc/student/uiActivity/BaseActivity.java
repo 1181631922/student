@@ -9,7 +9,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 
@@ -27,7 +29,8 @@ import java.util.Date;
 import cn.edu.sjzc.student.bean.UserBean;
 
 public class BaseActivity extends Activity implements View.OnClickListener {
-    public static String baseUrl = "http://172.16.192.3:8080/st/person!";
+    public static String aBaseUrl="http://172.28.214.3:8080/st/";
+    public static String baseUrl = aBaseUrl+"person!";
     public static String loginUrl = baseUrl+"loginAndroid";
     public static String personInfomationUrl = baseUrl+"findPersonByNumber?number=";
     public static String changePasswordUrl=baseUrl+"updatePasswordAndroid.action";
@@ -37,6 +40,12 @@ public class BaseActivity extends Activity implements View.OnClickListener {
 	public static final int REQUEST_TIMEOUT = 5 * 1000;// 设置请求超时10秒钟
 	public static final int SO_TIMEOUT = 10 * 1000; // 设置等待数据超时时间10秒钟
     public static boolean isForeground = false;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+    }
 
     // 检查网络状态
     public boolean CheckNetworkState() {
