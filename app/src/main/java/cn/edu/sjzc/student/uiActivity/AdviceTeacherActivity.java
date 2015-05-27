@@ -2,7 +2,11 @@ package cn.edu.sjzc.student.uiActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,10 +15,20 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import cn.edu.sjzc.student.R;
+import cn.edu.sjzc.student.app.UserApplication;
 import cn.edu.sjzc.student.dialog.ConfirmDialog;
 import cn.edu.sjzc.student.dialog.MainExitDialog;
+import cn.edu.sjzc.student.util.PostUtil;
 import cn.sharesdk.onekeyshare.theme.classic.EditPage;
 
 public class AdviceTeacherActivity extends BaseActivity {
@@ -22,7 +36,8 @@ public class AdviceTeacherActivity extends BaseActivity {
     private TextView advice_teacher_name;
     private EditText advice_teacher_evaluation;
     private Button advice_teacher_cancle, advice_teacher_submit;
-    private String teacherId, teacherName;
+    private String teacherId, teacherName, number, evaluation;
+    private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +60,19 @@ public class AdviceTeacherActivity extends BaseActivity {
     }
 
     private void initData() {
+        Intent intent = this.getIntent();
+        teacherId = intent.getStringExtra("teacher_id");
+        teacherName = intent.getStringExtra("teacher_name");
+        advice_teacher_name.setText(teacherName);
+        SharedPreferences userdata = this.getSharedPreferences(UserApplication.USER_DATA, 0);
+        number = userdata.getString(UserApplication.USER_DATA_NUMBER, "");
+    }
 
+    class EvaluationThread implements Runnable {
+        @Override
+        public void run() {
+            evaluation();
+        }
     }
 
     @Override
@@ -55,9 +82,56 @@ public class AdviceTeacherActivity extends BaseActivity {
             case R.id.advice_teacher_back:
                 finish();
                 break;
-            case R.id.advice_teacher_submit:
-                ConfirmExit();
+            case R.id.advice_teacher_cancle:
+                finish();
                 break;
+            case R.id.advice_teacher_submit:
+                evaluation = advice_teacher_evaluation.getText().toString().trim();
+                Thread changePassword = new Thread(new EvaluationThread());
+                changePassword.start();
+                break;
+        }
+    }
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 0:
+                    Toast.makeText(AdviceTeacherActivity.this, message, Toast.LENGTH_LONG).show();
+                    finish();
+                    break;
+                case 1:
+                    Toast.makeText(AdviceTeacherActivity.this, message, Toast.LENGTH_LONG).show();
+                    finish();
+                    break;
+            }
+        }
+    };
+
+    private void evaluation() {
+        Map<String, String> map = new LinkedHashMap<String, String>();
+        map.put("content", evaluation);
+        map.put("teacherId", teacherId);
+        map.put("number", number);
+        try {
+            String backMsg = PostUtil.postData(aBaseUrl + "result!addMessageAndroid.action", map);
+            Log.d("-------changePasswordUrl-----------", aBaseUrl + "result!addMessageAndroid.action");
+            Log.d("-------changepassword-----------", backMsg);
+            try {
+                JSONObject jsonObject = new JSONObject(backMsg);
+                message = jsonObject.getString("message");
+                Message message1 = Message.obtain();
+                message1.what = 0;
+                handler.sendMessage(message1);
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

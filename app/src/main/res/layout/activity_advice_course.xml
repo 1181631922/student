@@ -211,24 +211,196 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
                                 android:text="具体评价项目三" />
-
-                            <RadioButton
-                                android:id="@+id/advice_onegroup_four"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="14sp"
-                                android:text="具体评价项目四" />
-
-                            <RadioButton
-                                android:id="@+id/advice_onegroup_five"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="14sp"
-                                android:text="具体评价项目五" />
                         </RadioGroup>
 
                         <Button
-                            android:id="@+id/button1"
+                            android:id="@+id/button_one"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="点击测试" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_three"
+                    android:visibility="gone"
+                    android:layout_width="fill_parent"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/advice_three_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="2dp"
+                            android:text="第二个评价的题目"
+                            android:textSize="16sp"
+                            android:textColor="@color/black" />
+
+                        <RadioGroup
+                            android:id="@+id/radiogroup_three"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_below="@+id/advice_one_title"
+                            android:layout_marginTop="20dp">
+
+                            <RadioButton
+                                android:id="@+id/advice_threegroup_one"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true"
+                                android:textSize="14sp"
+                                android:text="具体评价项目一" />
+
+                            <RadioButton
+                                android:id="@+id/advice_threegroup_two"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:text="具体评价项目二" />
+
+                            <RadioButton
+                                android:id="@+id/advice_threegroup_three"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:text="具体评价项目三" />
+                        </RadioGroup>
+
+                        <Button
+                            android:id="@+id/button_three"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="点击测试" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_four"
+                    android:visibility="gone"
+                    android:layout_width="fill_parent"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/advice_four_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="2dp"
+                            android:text="第二个评价的题目"
+                            android:textSize="16sp"
+                            android:textColor="@color/black" />
+
+                        <RadioGroup
+                            android:id="@+id/radiogroup_four"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_below="@+id/advice_one_title"
+                            android:layout_marginTop="20dp">
+
+                            <RadioButton
+                                android:id="@+id/advice_fourgroup_one"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true"
+                                android:textSize="14sp"
+                                android:text="具体评价项目一" />
+
+                            <RadioButton
+                                android:id="@+id/advice_fourgroup_two"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:text="具体评价项目二" />
+
+                            <RadioButton
+                                android:id="@+id/advice_fourgroup_three"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:text="具体评价项目三" />
+                        </RadioGroup>
+
+                        <Button
+                            android:id="@+id/button_four"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="点击测试" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_five"
+                    android:visibility="gone"
+                    android:layout_width="fill_parent"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/advice_five_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="2dp"
+                            android:text="第二个评价的题目"
+                            android:textSize="16sp"
+                            android:textColor="@color/black" />
+
+                        <RadioGroup
+                            android:id="@+id/radiogroup_five"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_below="@+id/advice_one_title"
+                            android:layout_marginTop="20dp">
+
+                            <RadioButton
+                                android:id="@+id/advice_fivegroup_one"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true"
+                                android:textSize="14sp"
+                                android:text="具体评价项目一" />
+
+                            <RadioButton
+                                android:id="@+id/advice_fivegroup_two"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:text="具体评价项目二" />
+
+                            <RadioButton
+                                android:id="@+id/advice_fivegroup_three"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:text="具体评价项目三" />
+                        </RadioGroup>
+
+                        <Button
+                            android:id="@+id/button_five"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="点击测试" />
@@ -287,24 +459,10 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
                                 android:text="具体评价项目三" />
-
-                            <RadioButton
-                                android:id="@+id/advice_twogroup_four"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="14sp"
-                                android:text="具体评价项目四" />
-
-                            <RadioButton
-                                android:id="@+id/advice_twogroup_five"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="14sp"
-                                android:text="具体评价项目五" />
                         </RadioGroup>
 
                         <Button
-                            android:id="@+id/button2"
+                            android:id="@+id/button_two"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="点击测试" />
