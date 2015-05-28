@@ -59,7 +59,7 @@ public class PerPersonalInfoActivity extends BaseActivity implements
             idNum = bundle.getString("idNum");
             address = bundle.getString("address");
             tel = bundle.getString("tel");
-            email = bundle.getString("emai");
+            email = bundle.getString("email");
             age = bundle.getInt("age");
             major = bundle.getString("major");
             per_user_sex.setText(sex);
@@ -94,7 +94,7 @@ public class PerPersonalInfoActivity extends BaseActivity implements
                 bundle.putString("idNum", jsonObject.getString("idNum"));
                 bundle.putString("address", jsonObject.getString("address"));
                 bundle.putString("tel", jsonObject.getString("tel"));
-                bundle.putString("email", jsonObject.getString("e-mail"));
+                bundle.putString("email", jsonObject.getString("email"));
                 bundle.putInt("age", jsonObject.getInt("age"));
                 bundle.putString("major", jsonObject.getString("major"));
                 message.setData(bundle);
@@ -143,6 +143,9 @@ public class PerPersonalInfoActivity extends BaseActivity implements
                 break;
             case R.id.personalinfo_but:
                 Intent it_personalinfo = new Intent(PerPersonalInfoActivity.this, PerChangeInfoActivity.class);
+                it_personalinfo.putExtra("email",email);
+                it_personalinfo.putExtra("tel",tel);
+                it_personalinfo.putExtra("address",address);
                 PerPersonalInfoActivity.this.startActivity(it_personalinfo);
                 break;
             default:

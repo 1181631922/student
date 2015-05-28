@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import cn.edu.sjzc.student.R;
 import cn.edu.sjzc.student.uiActivity.EvealuationActivity;
+import cn.edu.sjzc.student.uiActivity.MyEvaluationHistoryActivity;
 import cn.edu.sjzc.student.uiActivity.MyRankingActivity;
 import cn.edu.sjzc.student.uiActivity.TeacherRankingActivity;
 
@@ -42,18 +43,12 @@ public class FindEvaluationFragment extends BaseFragment implements OnClickListe
 
     private void init() {
 
-        Button eva_evaluation_but = (Button) getActivity().findViewById(
-                R.id.eva_evaluation_but);
+        Button eva_evaluation_but = (Button) getActivity().findViewById(R.id.eva_evaluation_but);
         eva_evaluation_but.setOnClickListener(this);
-
-        Button eva_score_but = (Button) getActivity().findViewById(
-                R.id.eva_score_but);
+        Button eva_score_but = (Button) getActivity().findViewById(R.id.eva_score_but);
         eva_score_but.setOnClickListener(this);
-
-        Button eva_otherteacher_but = (Button) getActivity().findViewById(
-                R.id.eva_otherteacher_but);
+        Button eva_otherteacher_but = (Button) getActivity().findViewById(R.id.eva_otherteacher_but);
         eva_otherteacher_but.setOnClickListener(this);
-
     }
 
     @Override
@@ -62,7 +57,7 @@ public class FindEvaluationFragment extends BaseFragment implements OnClickListe
 
         switch (v.getId()) {
             case R.id.eva_evaluation_but:
-                Intent it_evalua = new Intent(getActivity(), EvealuationActivity.class);
+                Intent it_evalua = new Intent(getActivity(), MyEvaluationHistoryActivity.class);
                 startActivity(it_evalua);
                 break;
             case R.id.eva_score_but:

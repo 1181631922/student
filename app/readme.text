@@ -38,5 +38,7 @@ http://172.28.214.3:8080/st/course!findTeacherAndroid.action?number=20111308011
 http://172.16.114.2:8080/st/result!addMessageAndroid.action?
 7.提交课程评价
 http://172.16.114.2:8080/st/result!updateCourseResultAndroid.action
-8.
-http://172.16.114.2:8080/st/
+8.xiugai个人信息
+http://172.16.114.2:8080/st/person!updateinformationAndroid.action
+9.查看历史信息
+172.20.46.3:8080/st/result!showHistoryListAndroid.action?number=20111308011

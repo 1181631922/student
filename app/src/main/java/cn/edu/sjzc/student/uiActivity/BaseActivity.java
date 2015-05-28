@@ -29,10 +29,10 @@ import java.util.Date;
 import cn.edu.sjzc.student.bean.UserBean;
 
 public class BaseActivity extends Activity implements View.OnClickListener {
-    public static String aBaseUrl="http://172.16.114.2:8080/st/";
+    public static String aBaseUrl="http://172.20.46.3:8080/st/";
     public static String baseUrl = aBaseUrl+"person!";
     public static String loginUrl = baseUrl+"loginAndroid";
-    public static String personInfomationUrl = baseUrl+"findPersonByNumber?number=";
+    public static String personInfomationUrl = baseUrl+"findPersonByNumberAndroid?number=";
     public static String changePasswordUrl=baseUrl+"updatePasswordAndroid.action";
 
 
