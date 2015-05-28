@@ -28,7 +28,7 @@
                 android:layout_weight="0">
 
                 <ImageButton
-                    android:id="@+id/about_evaluation_back"
+                    android:id="@+id/teacher_evaluation_back"
                     android:layout_width="18dp"
                     android:layout_height="25dp"
                     android:background="#00000000"
@@ -43,7 +43,7 @@
                 android:gravity="center_horizontal"
                 android:paddingBottom="7dp"
                 android:paddingTop="12dp"
-                android:text="我的评价记录"
+                android:text="教师发起的评价"
                 android:textColor="#ffffff"
                 android:textSize="16sp" />
 
@@ -56,7 +56,7 @@
                 android:layout_weight="0">
 
                 <ProgressBar
-                    android:id="@+id/evalutdion_show_progress"
+                    android:id="@+id/teacher_show_progress"
                     android:layout_width="30dp"
                     android:layout_gravity="right"
                     android:layout_height="30dp"
@@ -66,7 +66,7 @@
     </LinearLayout>
 
     <cn.edu.sjzc.student.layout.PullToRefreshLayout
-        android:id="@+id/refresh_histroy_view"
+        android:id="@+id/refresh_teacher_view"
         android:layout_width="match_parent"
         android:background="#DCDCDC"
         android:layout_height="match_parent">
@@ -74,7 +74,7 @@
         <include layout="@layout/refresh_head" />
 
         <cn.edu.sjzc.student.view.PullableListView
-            android:id="@+id/evaluation_history_show"
+            android:id="@+id/evaluation_teacher_show"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#DCDCDC"

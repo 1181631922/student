@@ -61,20 +61,13 @@ public class FindEvaluationFragment extends BaseFragment implements OnClickListe
                 startActivity(it_evalua);
                 break;
             case R.id.eva_score_but:
-
-                Intent it_score = new Intent(getActivity(),
-                        MyRankingActivity.class);
+                Intent it_score = new Intent(getActivity(), MyRankingActivity.class);
                 FindEvaluationFragment.this.startActivity(it_score);
-
                 break;
             case R.id.eva_otherteacher_but:
-
-                Intent it_otherteacher = new Intent(getActivity(),
-                        TeacherRankingActivity.class);
+                Intent it_otherteacher = new Intent(getActivity(), TeacherRankingActivity.class);
                 FindEvaluationFragment.this.startActivity(it_otherteacher);
-
                 break;
-
             default:
                 break;
         }

@@ -38,7 +38,7 @@ public class AdviceCourseActivity extends BaseActivity {
     private RadioGroup radiogroup_one, radiogroup_two, radiogroup_three, radiogroup_four, radiogroup_five;
     private RadioButton advice_onegroup, advice_twogroup, advice_threegroup, advice_fourgroup, advice_fivegroup;
     private LinearLayout layout_one, layout_two, layout_three, layout_four, layout_five;
-    private String teacher_name, coursename, teacher_id, courseId;
+    private String teacher_name, coursename, teacher_id, courseId, request_id;
     private ImageButton advice_course_back;
     private TextView advice_course_name, advice_course_evaluation;
     private TextView advice_one_title, advice_two_title, advice_three_title, advice_four_title, advice_five_title;
@@ -242,6 +242,9 @@ public class AdviceCourseActivity extends BaseActivity {
         coursename = intent.getStringExtra("coursename");
         teacher_id = intent.getStringExtra("teacher_id");
         courseId = intent.getStringExtra("courseId");
+        if (!intent.getStringExtra("courseId").equals(null) && !intent.getStringExtra("courseId").equals("")) {
+            request_id = intent.getStringExtra("courseId");
+        }
 
 
         advice_progressbar = (ProgressBar) findViewById(R.id.advise_progressbar);
@@ -430,6 +433,9 @@ public class AdviceCourseActivity extends BaseActivity {
         map.put("C", C + "");
         map.put("courseId", courseId);
         map.put("number", number);
+        if (request_id.equals(null) && request_id.equals("")) {
+            map.put("request_id", request_id);
+        }
         try {
             String backMsg = PostUtil.postData(aBaseUrl + "result!updateCourseResultAndroid.action", map);
             Log.d("-------submitUrl-----------", aBaseUrl + "result!updateCourseResultAndroid.action");

@@ -1,114 +1,222 @@
 package cn.edu.sjzc.student.uiActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import cn.edu.sjzc.student.R;
+import cn.edu.sjzc.student.adapter.ScheduleAdapter;
+import cn.edu.sjzc.student.app.UserApplication;
+import cn.edu.sjzc.student.bean.ScheduleBean;
 import cn.edu.sjzc.student.dialog.HomeInfoDialog;
+import cn.edu.sjzc.student.layout.PullToRefreshLayout;
+import cn.edu.sjzc.student.util.PostUtil;
 
-public class HomeInfoActivity extends BaseActivity implements View.OnClickListener{
+public class HomeInfoActivity extends BaseActivity implements View.OnClickListener {
     /**
      * Called when the activity is first created.
      */
-    WebView wv;
-    ProgressDialog pd;
-    Handler handler;
-    private ProgressBar web_show_progress;
-    private ImageButton web_show_back;
+    private ProgressBar teacher_show_progress;
+    private ImageButton teacher_evaluation_back;
+    private String number;
+    private boolean isNet = false;
+    private ListView evaluation_teacher_show;
+    private PullToRefreshLayout ptrl;
+    private List<ScheduleBean> scheduleBeanList = new ArrayList<ScheduleBean>();
+    private List<Map<String, Object>> myList = new ArrayList<Map<String, Object>>();
+    private ScheduleAdapter scheduleAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);// ȥ��������
-        setContentView(R.layout.web_show);
+        setContentView(R.layout.activity_home_info);
         initView();
-        initData();// ִ�г�ʼ������
-        loadurl(wv, "http://www.sjzc.edu.cn/col/1270779355718/index.html");
+        initData();
+        teacher_show_progress.setVisibility(View.VISIBLE);
+        Thread loadThread = new Thread(new LoadLoadThread());
+        loadThread.start();
     }
 
     private void initView() {
-        this.web_show_progress = (ProgressBar) HomeInfoActivity.this.findViewById(R.id.web_show_progress);
-        this.web_show_back = (ImageButton) HomeInfoActivity.this.findViewById(R.id.web_show_back);
-        this.web_show_back.setOnClickListener(this);
+        teacher_evaluation_back = (ImageButton) findViewById(R.id.teacher_evaluation_back);
+        teacher_evaluation_back.setOnClickListener(this);
+        teacher_show_progress = (ProgressBar) findViewById(R.id.teacher_show_progress);
+        ptrl = ((PullToRefreshLayout) findViewById(R.id.refresh_teacher_view));
+        ptrl.setOnRefreshListener(new MyListener());
+        evaluation_teacher_show = (ListView) findViewById(R.id.evaluation_teacher_show);
+    }
+
+    private class MyListener implements PullToRefreshLayout.OnRefreshListener {
+        @Override
+        public void onRefresh(final PullToRefreshLayout pullToRefreshLayout) {
+            // 下拉刷新操作
+            new Handler() {
+                @Override
+                public void handleMessage(Message msg) {
+                    // 千万别忘了告诉控件刷新完毕了哦！
+                    pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
+                }
+            }.sendEmptyMessageDelayed(0, 3000);
+        }
+
+        @Override
+        public void onLoadMore(final PullToRefreshLayout pullToRefreshLayout) {
+            // 加载操作
+            new Handler() {
+                @Override
+                public void handleMessage(Message msg) {
+                    // 千万别忘了告诉控件加载完毕
+                    pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
+                }
+            }.sendEmptyMessageDelayed(0, 3000);
+        }
+    }
+
+    public void initData() {
+        SharedPreferences userdata = this.getSharedPreferences(UserApplication.USER_DATA, 0);
+        number = userdata.getString(UserApplication.USER_DATA_NUMBER, "");
+    }
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 0:
+                    initCourseView();
+                    break;
+                case 1:
+                    Toast.makeText(HomeInfoActivity.this, "教师未发起评价！", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
+    };
+
+    private void initCourseView() {
+        teacher_show_progress.setVisibility(View.GONE);
+        scheduleAdapter = new ScheduleAdapter(HomeInfoActivity.this, scheduleBeanList);
+        evaluation_teacher_show.setAdapter(null);
+        evaluation_teacher_show.setAdapter(scheduleAdapter);
+
+        evaluation_teacher_show.setOnItemClickListener(new OnCourseItemClick());
+    }
+
+    protected class OnCourseItemClick implements AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Intent intent = new Intent(HomeInfoActivity.this, AdviceCourseActivity.class);
+            for (int i = 0; i <= position; i++) {
+                if (position == i) {
+                    Map map = (Map) myList.get(i);
+                    intent.putExtra("teacher_name", (String) map.get("mid"));
+                    intent.putExtra("coursename", (String) map.get("mtitle"));
+                    intent.putExtra("courseId", (String) map.get("courseId"));
+                    intent.putExtra("request_id", (String) map.get("request_id"));
+                }
+            }
+            startActivity(intent);
+        }
+    }
+
+    class LoadLoadThread implements Runnable {
+        @Override
+        public void run() {
+            loadCourseData();
+        }
+    }
+
+    private void loadCourseData() {
+        isNet = false;
+        scheduleBeanList.clear();
+        Map<String, String> map = new LinkedHashMap<String, String>();
+        map.put("number", number);
+        try {
+            String backMsg = PostUtil.postData(aBaseUrl + "evaluationRequest!showRequestListAndroid.action", map);
+            Log.d("-------couse-----------", backMsg);
+            try {
+                JSONObject jsonObject = new JSONObject(backMsg);
+                JSONArray coursearray = jsonObject.getJSONArray("content");
+                int mess = jsonObject.getInt("message");
+                if (mess == 0) {
+                    Message message = Message.obtain();
+                    message.what = 1;
+                    handler.sendMessage(message);
+                } else {
+                    for (int i = 0; i < coursearray.length(); i++) {
+                        ScheduleBean scheduleBean = new ScheduleBean(null, null);
+                        JSONObject shceduleobj = coursearray.getJSONObject(i);
+                        scheduleBean.setTitle(shceduleobj.getString("teacher_name"));
+                        scheduleBean.setId(shceduleobj.getString("course_name"));
+
+                        Map<String, Object> mapcourse = new HashMap<String, Object>();
+                        mapcourse.put("mid", shceduleobj.getString("teacher_name"));
+                        mapcourse.put("mtitle", shceduleobj.getString("course_name"));
+                        mapcourse.put("courseId", shceduleobj.getString("course_id"));
+                        mapcourse.put("request_id", shceduleobj.getString("request_id"));
+                        myList.add(mapcourse);
+                        scheduleBeanList.add(scheduleBean);
+                    }
+                }
+                isNet = true;
+            } catch (JSONException e) {
+                e.printStackTrace();
+                isNet = false;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            isNet = false;
+        }
+        Message message = Message.obtain();
+        if (isNet) {
+            message.what = 0;
+            handler.sendMessage(message);
+        } else {
+            message.what = 1;
+            handler.sendMessage(message);
+        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.web_show_back:
+            case R.id.teacher_evaluation_back:
                 finish();
                 break;
 
         }
     }
 
-    public void initData() {
-        handler = new Handler() {
-            public void handleMessage(Message msg) {// ����һ��Handler�����ڴ��������߳���UI��ͨѶ
-                if (!Thread.currentThread().isInterrupted()) {
-                    switch (msg.what) {
-                        case 0:
-                            web_show_progress.showContextMenu();
-                            break;
-                        case 1:
-                            web_show_progress.setVisibility(View.GONE);
-                            break;
-                    }
-                }
-                super.handleMessage(msg);
-            }
-        };
-        wv = (WebView) findViewById(R.id.wv);
-        wv.getSettings().setJavaScriptEnabled(true);
-        wv.setScrollBarStyle(0);
-        wv.setWebViewClient(new WebViewClient() {
-            public boolean shouldOverrideUrlLoading(final WebView view,
-                                                    final String url) {
-                loadurl(view, url);
-                return true;
-            }// ��д�������,��webview����
-
-        });
-        wv.setWebChromeClient(new WebChromeClient() {
-            public void onProgressChanged(WebView view, int progress) {// �����ȸı��
-                if (progress == 100) {
-                    handler.sendEmptyMessage(1);// ���ȫ������,���ؽ�ȶԻ���
-                }
-                super.onProgressChanged(view, progress);
-            }
-        });
-    }
-
-    public boolean onKeyDown(int keyCode, KeyEvent event) {// ��׽���ؼ�
-        if ((keyCode == KeyEvent.KEYCODE_BACK) && wv.canGoBack()) {
-            wv.goBack();
-            return true;
-        } else if (keyCode == KeyEvent.KEYCODE_BACK) {
-            ConfirmExit();// ���˷��ؼ��Ѿ����ܷ��أ���ִ���˳�ȷ��
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
 
     public void ConfirmExit() {// �˳�ȷ��
-        HomeInfoDialog dialog=new HomeInfoDialog(this, R.style.mystyle, R.layout.dialog_exit_main);
+        HomeInfoDialog dialog = new HomeInfoDialog(this, R.style.mystyle, R.layout.dialog_exit_main);
         dialog.show();
-    }
-
-    public void loadurl(final WebView view, final String url) {
-        //自android 4.1以后web页面必须在ui的主线程进行更新，否则报错
-        handler.sendEmptyMessage(0);
-        view.loadUrl(url);// ������ҳ
     }
 
 
