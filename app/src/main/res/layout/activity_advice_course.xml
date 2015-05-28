@@ -47,6 +47,22 @@
                 android:textSize="16sp" />
 
             <FrameLayout
+                android:id="@+id/frameLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="7dp"
+                android:layout_weight="0">
+
+                <ProgressBar
+                    android:id="@+id/advise_progressbar"
+                    android:layout_width="30dp"
+                    android:layout_gravity="right"
+                    android:layout_height="30dp"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <FrameLayout
                 android:id="@+id/frameLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -174,12 +190,12 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/advice_one_title"
+                            android:id="@+id/advise_one_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="2dp"
-                            android:text="第一个评价的题目"
                             android:textSize="16sp"
+                            android:text=""
                             android:textColor="@color/black" />
 
                         <RadioGroup
@@ -196,21 +212,42 @@
                                 android:layout_height="wrap_content"
                                 android:checked="true"
                                 android:textSize="14sp"
-                                android:text="具体评价项目一" />
+                                android:text="A" />
+
+                            <TextView
+                                android:id="@+id/advice_onetext_one"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:layout_marginLeft="20dp" />
 
                             <RadioButton
                                 android:id="@+id/advice_onegroup_two"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
-                                android:text="具体评价项目二" />
+                                android:text="B" />
+
+                            <TextView
+                                android:id="@+id/advice_onetext_two"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:layout_marginLeft="20dp" />
 
                             <RadioButton
                                 android:id="@+id/advice_onegroup_three"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
-                                android:text="具体评价项目三" />
+                                android:text="C" />
+
+                            <TextView
+                                android:id="@+id/advice_onetext_three"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:layout_marginLeft="20dp" />
                         </RadioGroup>
 
                         <Button
@@ -258,6 +295,14 @@
                                 android:layout_height="wrap_content"
                                 android:checked="true"
                                 android:textSize="14sp"
+                                android:text="A" />
+
+                            <TextView
+                                android:id="@+id/advice_threetext_one"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:layout_marginLeft="20dp"
                                 android:text="具体评价项目一" />
 
                             <RadioButton
@@ -265,6 +310,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
+                                android:text="B" />
+
+                            <TextView
+                                android:id="@+id/advice_threetext_two"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:layout_marginLeft="20dp"
                                 android:text="具体评价项目二" />
 
                             <RadioButton
@@ -272,6 +325,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
+                                android:text="C" />
+
+                            <TextView
+                                android:id="@+id/advice_threetext_three"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:layout_marginLeft="20dp"
                                 android:text="具体评价项目三" />
                         </RadioGroup>
 
@@ -320,6 +381,14 @@
                                 android:layout_height="wrap_content"
                                 android:checked="true"
                                 android:textSize="14sp"
+                                android:text="A" />
+
+                            <TextView
+                                android:id="@+id/advice_fourtext_one"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:layout_marginLeft="20dp"
                                 android:text="具体评价项目一" />
 
                             <RadioButton
@@ -327,14 +396,30 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
-                                android:text="具体评价项目二" />
+                                android:text="B" />
+
+                            <TextView
+                                android:id="@+id/advice_fourtext_two"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:layout_marginLeft="20dp"
+                                android:text="具体评价项目一" />
 
                             <RadioButton
                                 android:id="@+id/advice_fourgroup_three"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
-                                android:text="具体评价项目三" />
+                                android:text="C" />
+
+                            <TextView
+                                android:id="@+id/advice_fourtext_three"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:layout_marginLeft="20dp"
+                                android:text="具体评价项目一" />
                         </RadioGroup>
 
                         <Button
@@ -382,6 +467,14 @@
                                 android:layout_height="wrap_content"
                                 android:checked="true"
                                 android:textSize="14sp"
+                                android:text="A" />
+
+                            <TextView
+                                android:id="@+id/advice_fivetext_one"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:layout_marginLeft="20dp"
                                 android:text="具体评价项目一" />
 
                             <RadioButton
@@ -389,14 +482,30 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
-                                android:text="具体评价项目二" />
+                                android:text="B" />
+
+                            <TextView
+                                android:id="@+id/advice_fivetext_two"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:layout_marginLeft="20dp"
+                                android:text="具体评价项目一" />
 
                             <RadioButton
                                 android:id="@+id/advice_fivegroup_three"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
-                                android:text="具体评价项目三" />
+                                android:text="C" />
+
+                            <TextView
+                                android:id="@+id/advice_fivetext_three"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:layout_marginLeft="20dp"
+                                android:text="具体评价项目一" />
                         </RadioGroup>
 
                         <Button
@@ -444,6 +553,14 @@
                                 android:layout_height="wrap_content"
                                 android:checked="true"
                                 android:textSize="14sp"
+                                android:text="A" />
+
+                            <TextView
+                                android:id="@+id/advice_twotext_one"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:layout_marginLeft="20dp"
                                 android:text="具体评价项目一" />
 
                             <RadioButton
@@ -451,14 +568,30 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
-                                android:text="具体评价项目二" />
+                                android:text="B" />
+
+                            <TextView
+                                android:id="@+id/advice_twotext_two"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:layout_marginLeft="20dp"
+                                android:text="具体评价项目一" />
 
                             <RadioButton
                                 android:id="@+id/advice_twogroup_three"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
-                                android:text="具体评价项目三" />
+                                android:text="C" />
+
+                            <TextView
+                                android:id="@+id/advice_twotext_three"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:layout_marginLeft="20dp"
+                                android:text="具体评价项目一" />
                         </RadioGroup>
 
                         <Button

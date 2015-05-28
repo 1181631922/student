@@ -31,8 +31,12 @@ http://172.16.238.8:8080/st/person!findPersonByNumber?number=0
 3.查看课程
 172.16.238.8:8080/st/course!findCourseAndroid?number=0
 4.根据课程评价教师
-http://172.28.214.3:8080/st/course!findEvaluationListAndroid?courseId=2c906e884d4d1ae8014d4d1ecde50008
+http://172.16.114.2:8080/st/course!findEvaluationListAndroid?courseId=2c906e884d4d1ae8014d4d1ecde50008
 5.查找教师
 http://172.28.214.3:8080/st/course!findTeacherAndroid.action?number=20111308011
 6.教师留言
-http://172.28.214.3:8080/st/result!addMessageAndroid.action?
+http://172.16.114.2:8080/st/result!addMessageAndroid.action?
+7.提交课程评价
+http://172.16.114.2:8080/st/result!updateCourseResultAndroid.action
+8.
+http://172.16.114.2:8080/st/

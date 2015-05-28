@@ -9,7 +9,7 @@ import java.util.Date;
 public class BaseFragment extends Fragment implements View.OnClickListener {
 
     private int index;
-    public static String aBaseUrl = "http://172.28.214.3:8080/st/";
+    public static String aBaseUrl = "http://172.16.114.2:8080/st/";
 
 
     public int getIndex() {

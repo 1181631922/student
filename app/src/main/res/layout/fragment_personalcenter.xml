@@ -284,6 +284,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1px"
+                android:visibility="gone"
                 android:layout_marginLeft="0dp"
                 android:background="#808A87" />
 
@@ -300,7 +301,8 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/login_selector"
-                    android:text="@string/loginOut" />
+                    android:visibility="gone"
+                    android:text="" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
