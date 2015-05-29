@@ -59,7 +59,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".uiActivity.GuideActivity"
+            android:name=".uiFragment.MainTabActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -185,9 +185,9 @@
         <activity
             android:name=".uiActivity.LoginDemoActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".uiFragment.MainTabActivity"
-            android:screenOrientation="portrait" />
+        <!--<activity-->
+            <!--android:name=".uiFragment.MainTabActivity"-->
+            <!--android:screenOrientation="portrait" />-->
         <activity
             android:name=".uiActivity.SignActivity"
             android:screenOrientation="portrait" />

@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="cn.edu.sjzc.teacher.uiFragment.TwoItemFragment">
 
@@ -25,6 +26,7 @@
                 android:id="@+id/twoitem_frag_one_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:paddingTop="8dp"
@@ -33,12 +35,14 @@
 
             <ImageView
                 android:id="@+id/twoitem_frag_two_ib"
+                android:visibility="gone"
                 android:layout_width="160dp"
                 android:layout_height="80dp"
                 android:onClick="onClick" />
 
             <TextView
                 android:id="@+id/twoitem_frag_two_text"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -64,6 +68,7 @@
 
             <TextView
                 android:id="@+id/twoitem_frag_three_text"
+                android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -74,12 +79,14 @@
 
             <ImageView
                 android:id="@+id/twoitem_frag_four_ib"
+                android:visibility="gone"
                 android:layout_width="160dp"
                 android:layout_height="80dp"
                 android:onClick="onClick" />
 
             <TextView
                 android:id="@+id/twoitem_frag_four_text"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"

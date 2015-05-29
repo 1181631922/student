@@ -113,9 +113,11 @@ public class TwoItemFragment extends BaseFragment implements View.OnClickListene
         this.twoitem_frag_three_ib.setOnClickListener(this);
         this.twoitem_frag_four_ib = (ImageView) getActivity().findViewById(R.id.twoitem_frag_four_ib);
         this.twoitem_frag_four_ib.setOnClickListener(this);
-        this.twoitem_frag_two_text = (TextView) getActivity().findViewById(R.id.twoitem_frag_two_text);
+        this.twoitem_frag_one_text = (TextView) getActivity().findViewById(R.id.twoitem_frag_one_text);
+        twoitem_frag_one_text.setText("于京生（1959-），汉族，1982年8月毕业于河北师范学院物理学专业，获学士学位。1982年8月---1984年2月在张家口师专物电学院任教，1984年2月---2004年12月在石家庄师专物电学院任教，2004年12月---2007年12月在石家庄学院物理学系任教，2007年12月---在石家庄学院物理学系、电气信息工程系任教。");
         this.twoitem_frag_two_text = (TextView) getActivity().findViewById(R.id.twoitem_frag_two_text);
         this.twoitem_frag_three_text = (TextView) getActivity().findViewById(R.id.twoitem_frag_three_text);
+        twoitem_frag_three_text.setText("王现彬（1981-），汉族，2007年毕业于河北工业大学通信与信息系统专业，获硕士学位，2007年3月到石家庄学院电气信息工程系任教。");
         this.twoitem_frag_four_text = (TextView) getActivity().findViewById(R.id.twoitem_frag_four_text);
     }
 
@@ -143,7 +145,7 @@ public class TwoItemFragment extends BaseFragment implements View.OnClickListene
                             if (i == 0) {
                                 SingleImageTaskUtil imageTask = new SingleImageTaskUtil(
                                         this.twoitem_frag_one_ib);
-                                imageTask.execute("http://a4.qpic.cn/psb?/V12cYG6y0mgzhv/PYROaRzmbt8QxeAEbffI.Pl9h.S121ziAE*WPynbDE0!/m/dGMAAAAAAAAAnull&bo=IAOQAQAAAAAFB5Y!&rf=photolist&t=5");
+                                imageTask.execute("http://wdxy.sjzc.edu.cn/uploadfiles/image/40b6b55d-6994-4707-8f61-adc72eea59f7.jpg");
                             }
                             if (i == 1) {
                                 SingleImageTaskUtil imageTask = new SingleImageTaskUtil(
@@ -153,7 +155,7 @@ public class TwoItemFragment extends BaseFragment implements View.OnClickListene
                             if (i == 2) {
                                 SingleImageTaskUtil imageTask = new SingleImageTaskUtil(
                                         this.twoitem_frag_three_ib);
-                                imageTask.execute("http://a4.qpic.cn/psb?/V12cYG6y0mgzhv/Qrg2.MtIszqX5FwOC*hbUeiqIDJ4RQ0TYv2mm1MnO6E!/m/dFMAAAAAAAAAnull&bo=4wJxAQAAAAAFB7U!&rf=photolist&t=5");
+                                imageTask.execute("http://wdxy.sjzc.edu.cn/uploadfiles/image/a9e501cf-d6c6-4232-a8d5-a5823b5d0e87.jpg");
                             }
                             if (i == 3) {
                                 SingleImageTaskUtil imageTask = new SingleImageTaskUtil(

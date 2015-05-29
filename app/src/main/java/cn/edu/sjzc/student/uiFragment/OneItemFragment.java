@@ -114,8 +114,10 @@ public class OneItemFragment extends BaseFragment implements View.OnClickListene
         this.oneitem_frag_four_ib = (ImageView) getActivity().findViewById(R.id.oneitem_frag_four_ib);
         this.oneitem_frag_four_ib.setOnClickListener(this);
         this.oneitem_frag_one_text = (TextView) getActivity().findViewById(R.id.oneitem_frag_one_text);
+        oneitem_frag_one_text.setText("李英然，女，1964年出生，1985年毕业于河北师范大学汉语言文学教育专业，获文学学士学位，现为石家庄学院文学与传媒学院副教授。主要担任中国古代文学、《红楼梦》专题研究等课程。2000年担任古代文学教研室主任至今。2006年担任文传学院中文系党支部书记。做人严谨而不失坦荡，待人宽厚不计较得失。好读书而不求甚解，性超然而敬事以信。最喜欢的格言是“吃亏是福”。喜欢用古体诗抒情言志，对《三国演义》、《红楼梦》等有一定的研究心得。");
         this.oneitem_frag_two_text = (TextView) getActivity().findViewById(R.id.oneitem_frag_two_text);
         this.oneitem_frag_three_text = (TextView) getActivity().findViewById(R.id.oneitem_frag_three_text);
+        oneitem_frag_three_text.setText("范川凤，女，1950年出生，河北井陉南张村人。现为石家庄学院文学与传媒学院教授。1988年起开始在报刊杂志发表作品，至今已发表各类体裁文章约300万字。1989年发表第一篇文章《女权主义批评与〈简爱〉》开始关注女性文学的创作与批评，1996年出版论文集《女性批评尝试集》引起省内理论界的重视，开始参与河北省的文学理论工作。2001年出版理论专著《女性文学创作批评》获河北省政府“第九届文艺振兴奖”。2005年出版《美人鱼的渔网从哪能里来——铁凝小说研究》获河北省社科优秀成果奖。论文曾获石家庄市政府“第四届文艺繁荣奖”，“第五届文艺繁荣奖”， “第七届文艺繁荣奖”，华北区文艺理论论文一等奖。河北省文艺理论金鹿奖.");
         this.oneitem_frag_four_text = (TextView) getActivity().findViewById(R.id.oneitem_frag_four_text);
     }
 
@@ -124,7 +126,6 @@ public class OneItemFragment extends BaseFragment implements View.OnClickListene
         HttpGet request;
         try {
             String SIYUANHUODOND_API_OLD = "http://121.40.142.138:81" + SIYUANHUODOND;
-            Log.d("------------------------------------", SIYUANHUODOND_API_OLD);
             request = new HttpGet(new URI(SIYUANHUODOND_API_OLD));
             HttpResponse response = httpClient.execute(request);
             if (response.getStatusLine().getStatusCode() == 200) {
@@ -134,7 +135,6 @@ public class OneItemFragment extends BaseFragment implements View.OnClickListene
                     try {
                         JSONObject jsonObject = new JSONObject(out);
                         JSONArray eveArray = jsonObject.getJSONArray("content");
-                        Log.d("--------------------------", jsonObject.toString());
                         for (int i = 0; i < 4; i++) {
 //                            JSONObject eveobj = eveArray.getJSONObject(i);
 //                            String smallPic = getServerURL() + eveobj.getString("smallPic");
@@ -143,7 +143,7 @@ public class OneItemFragment extends BaseFragment implements View.OnClickListene
                             if (i == 0) {
                                 SingleImageTaskUtil imageTask = new SingleImageTaskUtil(
                                         this.oneitem_frag_one_ib);
-                                imageTask.execute("http://a4.qpic.cn/psb?/V12cYG6y0mgzhv/PYROaRzmbt8QxeAEbffI.Pl9h.S121ziAE*WPynbDE0!/m/dGMAAAAAAAAAnull&bo=IAOQAQAAAAAFB5Y!&rf=photolist&t=5");
+                                imageTask.execute("http://210.31.249.9/wenchuan/szdwnew/teacherImages/liyingran.JPG");
                             }
                             if (i == 1) {
                                 SingleImageTaskUtil imageTask = new SingleImageTaskUtil(
@@ -153,7 +153,7 @@ public class OneItemFragment extends BaseFragment implements View.OnClickListene
                             if (i == 2) {
                                 SingleImageTaskUtil imageTask = new SingleImageTaskUtil(
                                         this.oneitem_frag_three_ib);
-                                imageTask.execute("http://a4.qpic.cn/psb?/V12cYG6y0mgzhv/Qrg2.MtIszqX5FwOC*hbUeiqIDJ4RQ0TYv2mm1MnO6E!/m/dFMAAAAAAAAAnull&bo=4wJxAQAAAAAFB7U!&rf=photolist&t=5");
+                                imageTask.execute("http://210.31.249.9/wenchuan/szdwnew/teacherImages/fanchuanfeng.jpg");
                             }
                             if (i == 3) {
                                 SingleImageTaskUtil imageTask = new SingleImageTaskUtil(

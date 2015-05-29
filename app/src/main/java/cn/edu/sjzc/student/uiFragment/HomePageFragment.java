@@ -94,15 +94,15 @@ public class HomePageFragment extends BaseFragment {
         viewPagerTab = (ViewPager) getActivity().findViewById(R.id.viewPagerTab);
         Fragment oneItemFragment = new OneItemFragment();
         Fragment twoItemFragment = new TwoItemFragment();
-        Fragment fourItemFragment = new FourItemFragment();
-        Fragment threeItemFragment = new ThreeItemFragment();
+//        Fragment fourItemFragment = new FourItemFragment();
+//        Fragment threeItemFragment = new ThreeItemFragment();
 
         fragments = new ArrayList<Fragment>();
         fragments.add(oneItemFragment);
         fragments.add(twoItemFragment);
-        fragments.add(fourItemFragment);
+//        fragments.add(fourItemFragment);
 
-        fragments.add(threeItemFragment);
+//        fragments.add(threeItemFragment);
 
         viewPagerTab.setAdapter(new tabPagerAdapter(getChildFragmentManager(), fragments));
         viewPagerTab.setCurrentItem(0);
@@ -118,38 +118,38 @@ public class HomePageFragment extends BaseFragment {
 
         tab1_oneitem = (TextView) getActivity().findViewById(R.id.tab1_oneitem);
         tab1_twoitem = (TextView) getActivity().findViewById(R.id.tab1_twoitem);
-        tab1_threeitem = (TextView) getActivity().findViewById(R.id.tab1_threeitem);
-        tab1_fouritem = (TextView) getActivity().findViewById(R.id.tab1_fouritem);
+//        tab1_threeitem = (TextView) getActivity().findViewById(R.id.tab1_threeitem);
+//        tab1_fouritem = (TextView) getActivity().findViewById(R.id.tab1_fouritem);
 
         tab1_oneitem_iv = (ImageView) getActivity().findViewById(R.id.tab1_oneitem_iv);
         tab1_twoitem_iv = (ImageView) getActivity().findViewById(R.id.tab1_twoitem_iv);
-        tab1_threeitem_iv = (ImageView) getActivity().findViewById(R.id.tab1_threeitem_iv);
-        tab1_fouritem_iv = (ImageView) getActivity().findViewById(R.id.tab1_fouritem_iv);
+//        tab1_threeitem_iv = (ImageView) getActivity().findViewById(R.id.tab1_threeitem_iv);
+//        tab1_fouritem_iv = (ImageView) getActivity().findViewById(R.id.tab1_fouritem_iv);
 
         tab1_oneitem.setTextColor(selectedColor);
         tab1_twoitem.setTextColor(unSelectedColor);
-        tab1_threeitem.setTextColor(unSelectedColor);
-        tab1_fouritem.setTextColor(unSelectedColor);
+//        tab1_threeitem.setTextColor(unSelectedColor);
+//        tab1_fouritem.setTextColor(unSelectedColor);
 
         tab1_oneitem_iv.setBackgroundColor(tabSelectedColor);
         tab1_twoitem_iv.setBackgroundColor(tabUnSelectedColor);
-        tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
-        tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
+//        tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
+//        tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
 
-        tab1_oneitem.setText("计算机系");
-        tab1_twoitem.setText("文传");
-        tab1_threeitem.setText("化工");
-        tab1_fouritem.setText("教育");
+        tab1_oneitem.setText("文传");
+        tab1_twoitem.setText("物电");
+//        tab1_threeitem.setText("化工");
+//        tab1_fouritem.setText("教育");
 
         tab1_oneitem.setOnClickListener(new tabOnClickListener(0));
         tab1_twoitem.setOnClickListener(new tabOnClickListener(1));
-        tab1_threeitem.setOnClickListener(new tabOnClickListener(2));
-        tab1_fouritem.setOnClickListener(new tabOnClickListener(3));
+//        tab1_threeitem.setOnClickListener(new tabOnClickListener(2));
+//        tab1_fouritem.setOnClickListener(new tabOnClickListener(3));
 
         tab1_oneitem_iv.setOnClickListener(new tabOnClickListener(0));
         tab1_twoitem_iv.setOnClickListener(new tabOnClickListener(1));
-        tab1_threeitem_iv.setOnClickListener(new tabOnClickListener(2));
-        tab1_fouritem_iv.setOnClickListener(new tabOnClickListener(3));
+//        tab1_threeitem_iv.setOnClickListener(new tabOnClickListener(2));
+//        tab1_fouritem_iv.setOnClickListener(new tabOnClickListener(3));
     }
 
 
@@ -175,47 +175,47 @@ public class HomePageFragment extends BaseFragment {
                 case 0:
                     tab1_oneitem.setTextColor(selectedColor);
                     tab1_twoitem.setTextColor(unSelectedColor);
-                    tab1_threeitem.setTextColor(unSelectedColor);
-                    tab1_fouritem.setTextColor(unSelectedColor);
+//                    tab1_threeitem.setTextColor(unSelectedColor);
+//                    tab1_fouritem.setTextColor(unSelectedColor);
 
                     tab1_oneitem_iv.setBackgroundColor(tabSelectedColor);
                     tab1_twoitem_iv.setBackgroundColor(tabUnSelectedColor);
-                    tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
-                    tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
+//                    tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
+//                    tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
 
                     break;
                 case 1:
                     tab1_oneitem.setTextColor(unSelectedColor);
                     tab1_twoitem.setTextColor(selectedColor);
-                    tab1_threeitem.setTextColor(unSelectedColor);
-                    tab1_fouritem.setTextColor(unSelectedColor);
+//                    tab1_threeitem.setTextColor(unSelectedColor);
+//                    tab1_fouritem.setTextColor(unSelectedColor);
 
                     tab1_oneitem_iv.setBackgroundColor(tabUnSelectedColor);
                     tab1_twoitem_iv.setBackgroundColor(tabSelectedColor);
-                    tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
-                    tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
+//                    tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
+//                    tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
                     break;
                 case 2:
                     tab1_oneitem.setTextColor(unSelectedColor);
                     tab1_twoitem.setTextColor(unSelectedColor);
-                    tab1_threeitem.setTextColor(selectedColor);
-                    tab1_fouritem.setTextColor(unSelectedColor);
+//                    tab1_threeitem.setTextColor(selectedColor);
+//                    tab1_fouritem.setTextColor(unSelectedColor);
 
                     tab1_oneitem_iv.setBackgroundColor(tabUnSelectedColor);
                     tab1_twoitem_iv.setBackgroundColor(tabUnSelectedColor);
-                    tab1_threeitem_iv.setBackgroundColor(tabSelectedColor);
-                    tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
+//                    tab1_threeitem_iv.setBackgroundColor(tabSelectedColor);
+//                    tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
                     break;
                 case 3:
                     tab1_oneitem.setTextColor(unSelectedColor);
                     tab1_twoitem.setTextColor(unSelectedColor);
-                    tab1_threeitem.setTextColor(unSelectedColor);
-                    tab1_fouritem.setTextColor(selectedColor);
+//                    tab1_threeitem.setTextColor(unSelectedColor);
+//                    tab1_fouritem.setTextColor(selectedColor);
 
                     tab1_oneitem_iv.setBackgroundColor(tabUnSelectedColor);
                     tab1_twoitem_iv.setBackgroundColor(tabUnSelectedColor);
-                    tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
-                    tab1_fouritem_iv.setBackgroundColor(tabSelectedColor);
+//                    tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
+//                    tab1_fouritem_iv.setBackgroundColor(tabSelectedColor);
                     break;
             }
         }
@@ -235,47 +235,47 @@ public class HomePageFragment extends BaseFragment {
                 case 0:
                     tab1_oneitem.setTextColor(selectedColor);
                     tab1_twoitem.setTextColor(unSelectedColor);
-                    tab1_threeitem.setTextColor(unSelectedColor);
-                    tab1_fouritem.setTextColor(unSelectedColor);
+//                    tab1_threeitem.setTextColor(unSelectedColor);
+//                    tab1_fouritem.setTextColor(unSelectedColor);
 
                     tab1_oneitem_iv.setBackgroundColor(tabSelectedColor);
                     tab1_twoitem_iv.setBackgroundColor(tabUnSelectedColor);
-                    tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
-                    tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
+//                    tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
+//                    tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
 
                     break;
                 case 1:
                     tab1_oneitem.setTextColor(unSelectedColor);
                     tab1_twoitem.setTextColor(selectedColor);
-                    tab1_threeitem.setTextColor(unSelectedColor);
-                    tab1_fouritem.setTextColor(unSelectedColor);
+//                    tab1_threeitem.setTextColor(unSelectedColor);
+//                    tab1_fouritem.setTextColor(unSelectedColor);
 
                     tab1_oneitem_iv.setBackgroundColor(tabUnSelectedColor);
                     tab1_twoitem_iv.setBackgroundColor(tabSelectedColor);
-                    tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
-                    tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
+//                    tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
+//                    tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
                     break;
                 case 2:
                     tab1_oneitem.setTextColor(unSelectedColor);
                     tab1_twoitem.setTextColor(unSelectedColor);
-                    tab1_threeitem.setTextColor(selectedColor);
-                    tab1_fouritem.setTextColor(unSelectedColor);
+//                    tab1_threeitem.setTextColor(selectedColor);
+//                    tab1_fouritem.setTextColor(unSelectedColor);
 
                     tab1_oneitem_iv.setBackgroundColor(tabUnSelectedColor);
                     tab1_twoitem_iv.setBackgroundColor(tabUnSelectedColor);
-                    tab1_threeitem_iv.setBackgroundColor(tabSelectedColor);
-                    tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
+//                    tab1_threeitem_iv.setBackgroundColor(tabSelectedColor);
+//                    tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
                     break;
                 case 3:
                     tab1_oneitem.setTextColor(unSelectedColor);
                     tab1_twoitem.setTextColor(unSelectedColor);
-                    tab1_threeitem.setTextColor(unSelectedColor);
-                    tab1_fouritem.setTextColor(selectedColor);
+//                    tab1_threeitem.setTextColor(unSelectedColor);
+//                    tab1_fouritem.setTextColor(selectedColor);
 
                     tab1_oneitem_iv.setBackgroundColor(tabUnSelectedColor);
                     tab1_twoitem_iv.setBackgroundColor(tabUnSelectedColor);
-                    tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
-                    tab1_fouritem_iv.setBackgroundColor(tabSelectedColor);
+//                    tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
+//                    tab1_fouritem_iv.setBackgroundColor(tabSelectedColor);
                     break;
             }
             viewPagerTab.setCurrentItem(index);
