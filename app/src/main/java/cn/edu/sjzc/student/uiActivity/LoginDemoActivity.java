@@ -88,7 +88,7 @@ public class LoginDemoActivity extends BaseActivity implements OnClickListener {
                 // 获取已经存在的用户名和密码
                 String realUsername = sp.getString("username", "");
                 String realPassword = sp.getString("password", "");
-                editor.putBoolean("checkstatus", true);
+                editor.putBoolean(UserApplication.REMBER_PASSWORD, true);
                 editor.commit();
                 if ((!realUsername.equals("")) && !(realUsername == null)
                         && (!realPassword.equals(""))
@@ -101,7 +101,7 @@ public class LoginDemoActivity extends BaseActivity implements OnClickListener {
                     inputPassword.setText(realPassword);
                 }
             } else {
-                editor.putBoolean("checkstatus", false);
+                editor.putBoolean(UserApplication.REMBER_PASSWORD, false);
                 editor.commit();
                 // 清空输入框
                 inputUsername.setText("");
@@ -181,14 +181,14 @@ public class LoginDemoActivity extends BaseActivity implements OnClickListener {
         return false;
     }
 
-    // 初始化用户数�?
+    // 初始化用户数据
     private void LoadUserdata() {
         sp = getSharedPreferences("userdata", Context.MODE_PRIVATE);
-        boolean checkstatus = sp.getBoolean("checkstatus", false);
+        boolean checkstatus = sp.getBoolean(UserApplication.REMBER_PASSWORD, false);
         if (checkstatus) {
             saveInfoItem.setChecked(true);
             // 载入用户信息
-            // 获取已经存在的用户名和密�?
+            // 获取已经存在的用户名和密码
             String realUsername = sp.getString("username", "");
             String realPassword = sp.getString("password", "");
             if ((!realUsername.equals("")) && !(realUsername == null)
@@ -206,13 +206,12 @@ public class LoginDemoActivity extends BaseActivity implements OnClickListener {
     }
 
 
-    // LoginThread线程�?
     class LoginThread implements Runnable {
         @Override
         public void run() {
             String username = inputUsername.getText().toString();
             String password = inputPassword.getText().toString();
-            boolean checkstatus = sp.getBoolean("checkstatus", false);
+            boolean checkstatus = sp.getBoolean(UserApplication.REMBER_PASSWORD, false);
             if (checkstatus) {
                 // 获取已经存在的用户名和密�?
                 String realUsername = sp.getString("username", "");

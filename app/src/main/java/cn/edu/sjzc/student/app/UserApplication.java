@@ -9,4 +9,5 @@ public class UserApplication {
     public static final String USER_DATA_USERNAME = "username";
     public static final String USER_DATA_NUMBER = "number";
     public static final String USER_DATA_PASSWORD = "password";
+    public static final String REMBER_PASSWORD = "checkstatus";
 }

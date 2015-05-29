@@ -25,8 +25,7 @@ import cn.edu.sjzc.student.uiFragment.MainTabActivity;
 
 public class AppStartActivicy extends BaseActivity {
     private Thread thread;
-    private final static String ALBUM_PATH = Environment.getExternalStorageDirectory()
-            + "/fanyafeng/";
+    private final static String ALBUM_PATH = Environment.getExternalStorageDirectory() + "/fanyafeng/";
     private String mFileName;
     private String mSaveMessage;
     private Bitmap mBitmap;
@@ -39,20 +38,21 @@ public class AppStartActivicy extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(AppStartActivicy.this, MainTabActivity.class);
+                Intent intent = new Intent(AppStartActivicy.this, LoginDemoActivity.class);
                 startActivity(intent);
                 AppStartActivicy.this.finish();
             }
         }, 1000);
+        if (CheckNetworkState()) {
+            new Thread(connectNet).start();
 
-//        new Thread(connectNet).start();
-//
-//        new Handler().postDelayed(new Runnable(){
-//	  		@Override
-//	  		public void run(){
-//	  			new Thread(saveFileRunnable).start();
-//	  		}
-//	  	}, 5000);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    new Thread(saveFileRunnable).start();
+                }
+            }, 3000);
+        }
     }
 
     public byte[] getImage(String path) throws Exception {
@@ -131,8 +131,7 @@ public class AppStartActivicy extends BaseActivity {
                     mBitmap = BitmapFactory.decodeByteArray(data, 0,
                             data.length);// bitmap
                 } else {
-                    Toast.makeText(AppStartActivicy.this, "Image error!", 1)
-                            .show();
+//                    Toast.makeText(AppStartActivicy.this, "Image error!", 1).show();
                 }
                 // ******** 方法2：取得的是InputStream，直接从InputStream生成bitmap
                 mBitmap = BitmapFactory.decodeStream(getImageStream(filePath));
@@ -150,8 +149,6 @@ public class AppStartActivicy extends BaseActivity {
 //                    Toast.LENGTH_SHORT).show();
 //        }
 //    };
-
-
 
 
 }

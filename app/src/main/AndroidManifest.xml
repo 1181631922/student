@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.edu.sjzc.student"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 
     <permission
         android:name="cn.edu.sjzc.student.permission.JPUSH_MESSAGE"
@@ -57,10 +57,10 @@
     <application
         android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
-            android:name=".uiActivity.LoginDemoActivity"
-            android:label="@string/app_name" >
+            android:name=".uiActivity.GuideActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -72,7 +72,7 @@
         <activity
             android:name="cn.jpush.android.ui.PushActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
 
@@ -90,7 +90,7 @@
         <service
             android:name="cn.jpush.android.service.PushService"
             android:enabled="true"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTER" />
                 <action android:name="cn.jpush.android.intent.REPORT" />
@@ -102,8 +102,8 @@
         <!-- Required SDK核心功能 -->
         <receiver
             android:name="cn.jpush.android.service.PushReceiver"
-            android:enabled="true" >
-            <intent-filter android:priority="1000" >
+            android:enabled="true">
+            <intent-filter android:priority="1000">
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
                 <!-- Required  显示通知栏 -->
                 <category android:name="cn.edu.sjzc.student" />
@@ -127,7 +127,7 @@
         <!-- User defined.  For test only  用户自定义的广播接收器 -->
         <receiver
             android:name=".broadcasterceiver.JpushReceiver"
-            android:enabled="true" >
+            android:enabled="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTRATION" />
                 <!-- Required  用户注册SDK的intent -->
@@ -162,7 +162,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
+            android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
                 <data android:scheme="tencent100371282" />
 
@@ -181,6 +181,9 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".uiActivity.AppStartActivicy"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".uiActivity.LoginDemoActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".uiFragment.MainTabActivity"
@@ -266,7 +269,7 @@
             android:label="@string/title_activity_evealuation"
             android:screenOrientation="portrait" />
         <!-- For test only 测试状态通知栏，需要打开的Activity -->
-        <activity android:name=".uiActivity.TestActivity" >
+        <activity android:name=".uiActivity.TestActivity">
             <intent-filter>
                 <action android:name="jpush.testAction" />
 
@@ -279,11 +282,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".uiActivity.AdviceCourseActivity"
-            android:label="@string/title_activity_advice_course" />
+            android:label="@string/title_activity_advice_course"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".uiActivity.MyEvaluationHistoryActivity"
-            android:label="@string/title_activity_my_evaluation_history" >
-        </activity>
+            android:label="@string/title_activity_my_evaluation_history"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
