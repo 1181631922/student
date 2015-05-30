@@ -69,6 +69,7 @@ public class FindAdviceSonFragment extends BaseFragment {
     private boolean isNet = false;
     private static int countCourse = 1;
     private String FindTeacherUrl = aBaseUrl + "course!findTeacherAndroid.action";
+    private static int t = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -163,6 +164,11 @@ public class FindAdviceSonFragment extends BaseFragment {
             new Handler() {
                 @Override
                 public void handleMessage(Message msg) {
+                    if (t == 0) {
+                        initCourseView();
+                    } else if (t == 1) {
+                        initTeacherView();
+                    }
                     // 千万别忘了告诉控件刷新完毕了哦！
                     pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
                 }
@@ -302,10 +308,12 @@ public class FindAdviceSonFragment extends BaseFragment {
 
     public void init(int i) {
         if (i == 0) {
+            t = 0;
             advice_progressbar.setVisibility(View.VISIBLE);
             Thread loadThread = new Thread(new LoadThread());
             loadThread.start();
         } else if (i == 1) {
+            t = 1;
             advice_progressbar.setVisibility(View.VISIBLE);
             Thread loadThread = new Thread(new LoadTeacherThread());
             loadThread.start();

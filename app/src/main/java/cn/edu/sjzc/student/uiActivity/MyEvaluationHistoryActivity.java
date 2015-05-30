@@ -26,6 +26,7 @@ import cn.edu.sjzc.student.R;
 import cn.edu.sjzc.student.adapter.EvaluationHistoryAdapter;
 import cn.edu.sjzc.student.app.UserApplication;
 import cn.edu.sjzc.student.bean.EvaluationHistoryBean;
+import cn.edu.sjzc.student.dialog.NetCheckDialog;
 import cn.edu.sjzc.student.layout.PullToRefreshLayout;
 import cn.edu.sjzc.student.util.PostUtil;
 
@@ -49,6 +50,12 @@ public class MyEvaluationHistoryActivity extends BaseActivity {
         evalutdion_show_progress.setVisibility(View.VISIBLE);
         Thread loadThread = new Thread(new LoadThread());
         loadThread.start();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        CheckNetworkState();
     }
 
     private void initView() {
@@ -93,15 +100,22 @@ public class MyEvaluationHistoryActivity extends BaseActivity {
             new Handler() {
                 @Override
                 public void handleMessage(Message msg) {
-                    // 千万别忘了告诉控件刷新完毕了哦！
-                    pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
+                    if (CheckNetworkState()) {
+                        updateUI();
+                        pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
+                    } else {
+                        NetCheckDialog netCheckDialog = new NetCheckDialog(MyEvaluationHistoryActivity.this, R.style.mystyle, R.layout.dialog_custom);
+                        netCheckDialog.show();
+                    }
+
                 }
             }.sendEmptyMessageDelayed(0, 3000);
         }
 
         @Override
         public void onLoadMore(final PullToRefreshLayout pullToRefreshLayout) {
-            // 加载操作
+//            加载操作
+
             new Handler() {
                 @Override
                 public void handleMessage(Message msg) {
@@ -138,7 +152,6 @@ public class MyEvaluationHistoryActivity extends BaseActivity {
                     evaluationHistoryBean.setCourse(shceduleobj.getString("course_name"));
 
                     evaluationHistoryBeanList.add(evaluationHistoryBean);
-
                 }
                 isNet = true;
             } catch (JSONException e) {

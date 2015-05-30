@@ -252,9 +252,10 @@
 
                         <Button
                             android:id="@+id/button_one"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="点击测试" />
+                            android:layout_width="fill_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/login_selector"
+                            android:text="点击提交给老师作出评价" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -338,9 +339,10 @@
 
                         <Button
                             android:id="@+id/button_three"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="点击测试" />
+                            android:layout_width="fill_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/login_selector"
+                            android:text="点击提交给老师作出评价" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -424,9 +426,10 @@
 
                         <Button
                             android:id="@+id/button_four"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="点击测试" />
+                            android:layout_width="fill_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/login_selector"
+                            android:text="点击提交给老师作出评价" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -510,9 +513,10 @@
 
                         <Button
                             android:id="@+id/button_five"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="点击测试" />
+                            android:layout_width="fill_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/login_selector"
+                            android:text="点击提交给老师作出评价" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -596,9 +600,10 @@
 
                         <Button
                             android:id="@+id/button_two"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="点击测试" />
+                            android:layout_width="fill_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/login_selector"
+                            android:text="点击提交给老师作出评价" />
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>

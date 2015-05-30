@@ -41,6 +41,7 @@ import cn.edu.sjzc.student.adapter.StudentAdapter;
 import cn.edu.sjzc.student.app.UserApplication;
 import cn.edu.sjzc.student.bean.ScheduleBean;
 import cn.edu.sjzc.student.bean.StudentUserBean;
+import cn.edu.sjzc.student.dialog.NetCheckDialog;
 import cn.edu.sjzc.student.layout.PullToRefreshLayout;
 import cn.edu.sjzc.student.uiActivity.AdvStudentInfoActivity;
 import cn.edu.sjzc.student.uiActivity.FindTeacherActivity;
@@ -100,6 +101,12 @@ public class FindTeacherFragment extends BaseFragment implements
         findteacher_progressbar.setVisibility(View.VISIBLE);
         Thread loadThread = new Thread(new LoadThread());
         loadThread.start();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        CheckNetworkState();
     }
 
     private void initData() {
@@ -207,7 +214,14 @@ public class FindTeacherFragment extends BaseFragment implements
             new Handler() {
                 @Override
                 public void handleMessage(Message msg) {
-                    pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
+                    if (CheckNetworkState()) {
+                        initContent();
+                        pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
+                    } else {
+                        NetCheckDialog netCheckDialog = new NetCheckDialog(getActivity(), R.style.mystyle, R.layout.dialog_custom);
+                        netCheckDialog.show();
+                    }
+
                 }
             }.sendEmptyMessageDelayed(0, 2000);
         }
@@ -309,6 +323,7 @@ public class FindTeacherFragment extends BaseFragment implements
             super.handleMessage(msg);
             switch (msg.what) {
                 case ROCKPOWER:
+                    initContent();
                     Toast.makeText(getActivity(), "检测到摇晃，执行操作！", Toast.LENGTH_SHORT).show();
                     break;
             }
@@ -319,7 +334,6 @@ public class FindTeacherFragment extends BaseFragment implements
     @Override
     public void onTouchingLetterChanged(String s) {
         // TODO Auto-generated method stub
-        Log.i("coder", "s:" + s);
 
         overlay.setText(s);
         overlay.setVisibility(View.VISIBLE);
@@ -327,7 +341,6 @@ public class FindTeacherFragment extends BaseFragment implements
         handler.postDelayed(overlayThread, 1000);
         if (alphaIndexer(s) > 0) {
             int position = alphaIndexer(s);
-            Log.i("coder", "position:" + position);
             lvShow.setSelection(position);
 
         }
@@ -377,7 +390,6 @@ public class FindTeacherFragment extends BaseFragment implements
                 break;
             }
         }
-        Log.i("coder", "i" + position + studentUserBeans.get(position));
         return position;
     }
 
