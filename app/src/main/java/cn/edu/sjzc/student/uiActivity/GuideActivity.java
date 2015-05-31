@@ -43,6 +43,7 @@ public class GuideActivity extends BaseActivity implements OnTouchListener {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         JPushInterface.init(this);
+        init();
         registerMessageReceiver();  // used for receive msg
         if (isFirstStart()) {
             setTarget();
