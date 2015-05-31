@@ -44,3 +44,5 @@ http://172.16.114.2:8080/st/person!updateinformationAndroid.action
 172.20.46.3:8080/st/result!showHistoryListAndroid.action?number=20111308011
 10.教师发起评价
 http://172.20.46.3:8080/st/evaluationRequest!showRequestListAndroid.action?number=20111308011
+11.学生查看课程
+http://172.20.46.3:8080/st/course!findCourseAndroid.action?number

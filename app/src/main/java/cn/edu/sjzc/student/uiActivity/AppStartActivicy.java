@@ -43,16 +43,16 @@ public class AppStartActivicy extends BaseActivity {
                 AppStartActivicy.this.finish();
             }
         }, 1000);
-        if (CheckNetworkState()) {
-            new Thread(connectNet).start();
-
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    new Thread(saveFileRunnable).start();
-                }
-            }, 3000);
-        }
+//        if (CheckNetworkState()) {
+//            new Thread(connectNet).start();
+//
+//            new Handler().postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    new Thread(saveFileRunnable).start();
+//                }
+//            }, 3000);
+//        }
     }
 
     public byte[] getImage(String path) throws Exception {

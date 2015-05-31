@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import cn.edu.sjzc.student.R;
 import cn.edu.sjzc.student.uiActivity.EvealuationActivity;
+import cn.edu.sjzc.student.uiActivity.MyCourseActivity;
 import cn.edu.sjzc.student.uiActivity.MyEvaluationHistoryActivity;
 import cn.edu.sjzc.student.uiActivity.MyRankingActivity;
 import cn.edu.sjzc.student.uiActivity.TeacherRankingActivity;
@@ -61,7 +62,7 @@ public class FindEvaluationFragment extends BaseFragment implements OnClickListe
                 startActivity(it_evalua);
                 break;
             case R.id.eva_score_but:
-                Intent it_score = new Intent(getActivity(), MyRankingActivity.class);
+                Intent it_score = new Intent(getActivity(), MyCourseActivity.class);
                 FindEvaluationFragment.this.startActivity(it_score);
                 break;
             case R.id.eva_otherteacher_but:

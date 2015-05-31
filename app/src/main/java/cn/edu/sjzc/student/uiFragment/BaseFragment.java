@@ -12,7 +12,7 @@ import java.util.Date;
 public class BaseFragment extends ABaseFragment implements View.OnClickListener {
 
     private int index;
-//    public static String aBaseUrl = "http://172.20.46.3:8080/st/";
+    public static String aBaseUrl = "http://192.168.253.2:8080/st/";
 
 
     public int getIndex() {

@@ -53,10 +53,12 @@ public class LoginDemoActivity extends BaseActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login_first);
+        Log.d("-----abaseurl-------",aBaseUrl);
 //		初始化视图控
         initView();
         // 初始化数据
         LoadUserdata();
+
     }
 
     @Override

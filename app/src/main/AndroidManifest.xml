@@ -292,6 +292,10 @@
             android:name=".uiActivity.ABaseActivity"
             android:label="@string/title_activity_abase" >
         </activity>
+        <activity
+            android:name=".uiActivity.MyCourseActivity"
+            android:label="@string/title_activity_my_course"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
