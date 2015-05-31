@@ -66,8 +66,8 @@
                         android:layout_height="80dp"
                         android:text="用户姓名"
                         android:textSize="15sp"
-                        android:textColor="@color/black"
-                        android:background="@drawable/user_img" />
+                        android:textColor="@color/blue"
+                        android:background="@drawable/icon" />
                 </RelativeLayout>
             </LinearLayout>
 
