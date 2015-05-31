@@ -9,10 +9,10 @@ import android.view.View;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class BaseFragment extends Fragment implements View.OnClickListener {
+public class BaseFragment extends ABaseFragment implements View.OnClickListener {
 
     private int index;
-    public static String aBaseUrl = "http://172.20.46.3:8080/st/";
+//    public static String aBaseUrl = "http://172.20.46.3:8080/st/";
 
 
     public int getIndex() {

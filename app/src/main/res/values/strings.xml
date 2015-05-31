@@ -50,5 +50,6 @@
     <string name="title_activity_advice_teacher">教师留言</string>
     <string name="title_activity_advice_course">课程评价</string>
     <string name="title_activity_my_evaluation_history">MyEvaluationHistoryActivity</string>
+    <string name="title_activity_abase">ABaseActivity</string>
 
 </resources>
