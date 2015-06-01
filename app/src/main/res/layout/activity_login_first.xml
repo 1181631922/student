@@ -131,6 +131,7 @@
                 android:paddingLeft="40.0px"
                 android:layout_marginLeft="30dp"
                 android:text="@string/opt_remember"
+                android:visibility="gone"
                 android:textColor="#ff222222"
                 android:textSize="16.0sp" />
 
@@ -148,12 +149,11 @@
                 android:id="@+id/login_btn_login"
                 android:layout_width="90.0dp"
                 android:layout_height="35dp"
-                android:layout_below="@+id/textview02"
-                android:layout_marginTop="7.0px"
-                android:layout_toRightOf="@+id/login_cb_savepwd"
-                android:layout_marginLeft="100dp"
                 android:background="@drawable/login_selector"
-                android:text="@string/login" />
+                android:text="@string/login"
+                android:layout_below="@+id/login_edit_pwd"
+                android:layout_alignRight="@+id/login_edit_pwd"
+                android:layout_alignEnd="@+id/login_edit_pwd" />
 
 
         </RelativeLayout>

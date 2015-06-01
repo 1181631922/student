@@ -27,7 +27,7 @@
                 android:gravity="center"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:text="查看评估"
+                android:text="查看信息"
                 android:textColor="#ffffff"
                 android:textSize="14sp" />
         </RelativeLayout>
