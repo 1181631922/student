@@ -215,7 +215,9 @@ public class FindTeacherFragment extends BaseFragment implements
                 @Override
                 public void handleMessage(Message msg) {
                     if (CheckNetworkState()) {
-                        initContent();
+                        findteacher_progressbar.setVisibility(View.VISIBLE);
+                        Thread loadThread = new Thread(new LoadThread());
+                        loadThread.start();
                         pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
                     } else {
                         NetCheckDialog netCheckDialog = new NetCheckDialog(getActivity(), R.style.mystyle, R.layout.dialog_custom);
@@ -323,7 +325,14 @@ public class FindTeacherFragment extends BaseFragment implements
             super.handleMessage(msg);
             switch (msg.what) {
                 case ROCKPOWER:
-                    initContent();
+//                    if (CheckNetworkState()) {
+//                        findteacher_progressbar.setVisibility(View.VISIBLE);
+//                        Thread loadThread = new Thread(new LoadThread());
+//                        loadThread.start();
+//                    } else {
+//                        NetCheckDialog netCheckDialog = new NetCheckDialog(getActivity(), R.style.mystyle, R.layout.dialog_custom);
+//                        netCheckDialog.show();
+//                    }
                     Toast.makeText(getActivity(), "检测到摇晃，执行操作！", Toast.LENGTH_SHORT).show();
                     break;
             }

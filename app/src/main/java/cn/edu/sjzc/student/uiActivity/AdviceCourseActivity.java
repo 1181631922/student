@@ -46,18 +46,23 @@ public class AdviceCourseActivity extends BaseActivity {
     //    第一组内容
     private TextView advice_onetext_one, advice_onetext_two, advice_onetext_three;
     private String onetext_one, onetext_two, onetext_three;
+    private RadioButton advice_onegroup_three;
     //    第er组内容
     private TextView advice_twotext_one, advice_twotext_two, advice_twotext_three;
     private String twotext_one, twotext_two, twotext_three;
+    private RadioButton advice_twogroup_three;
     //    第san组内容
     private TextView advice_threetext_one, advice_threetext_two, advice_threetext_three;
     private String threetext_one, threetext_two, threetext_three;
+    private RadioButton advice_threegroup_three;
     //    第si组内容
     private TextView advice_fourtext_one, advice_fourtext_two, advice_fourtext_three;
     private String fourtext_one, fourtext_two, fourtext_three;
+    private RadioButton advice_fourgroup_three;
     //    第wu组内容
     private TextView advice_fivetext_one, advice_fivetext_two, advice_fivetext_three;
     private String fivetext_one, fivetext_two, fivetext_three;
+    private RadioButton advice_fivegroup_three;
 
     private boolean isNet = false;
     private String number, message;
@@ -102,31 +107,55 @@ public class AdviceCourseActivity extends BaseActivity {
                     advice_one_title.setText(one_title);
                     advice_onetext_one.setText(onetext_one);
                     advice_onetext_two.setText(onetext_two);
-                    advice_onetext_three.setText(onetext_three);
+                    if (onetext_three.equals(null) || onetext_three.equals("")) {
+                        advice_onegroup_three.setVisibility(View.GONE);
+                    } else {
+                        advice_onetext_three.setText(onetext_three);
+                    }
                     break;
                 case 11:
                     advice_two_title.setText(two_title);
                     advice_twotext_one.setText(twotext_one);
                     advice_twotext_two.setText(twotext_two);
-                    advice_twotext_three.setText(twotext_three);
+//                    advice_twotext_three.setText(twotext_three);
+                    if (twotext_three.equals(null) || twotext_three.equals("")) {
+                        advice_twogroup_three.setVisibility(View.GONE);
+                    } else {
+                        advice_twotext_three.setText(twotext_three);
+                    }
                     break;
                 case 12:
                     advice_three_title.setText(three_title);
                     advice_threetext_one.setText(threetext_one);
                     advice_threetext_two.setText(threetext_two);
-                    advice_threetext_three.setText(threetext_three);
+//                    advice_threetext_three.setText(threetext_three);
+                    if (threetext_three.equals(null) || threetext_three.equals("")) {
+                        advice_threegroup_three.setVisibility(View.GONE);
+                    } else {
+                        advice_threetext_three.setText(threetext_three);
+                    }
                     break;
                 case 13:
                     advice_four_title.setText(four_title);
                     advice_fourtext_one.setText(fourtext_one);
                     advice_fourtext_two.setText(fourtext_two);
-                    advice_fourtext_three.setText(fourtext_three);
+//                    advice_fourtext_three.setText(fourtext_three);
+                    if (fourtext_three.equals(null) || fourtext_three.equals("")) {
+                        advice_threegroup_three.setVisibility(View.GONE);
+                    } else {
+                        advice_fourtext_three.setText(fourtext_three);
+                    }
                     break;
                 case 14:
                     advice_five_title.setText(five_title);
                     advice_fivetext_one.setText(fivetext_one);
                     advice_fivetext_two.setText(fivetext_two);
-                    advice_fivetext_three.setText(fivetext_three);
+//                    advice_fivetext_three.setText(fivetext_three);
+                    if (fivetext_three.equals(null) || fivetext_three.equals("")) {
+                        advice_fivegroup_three.setVisibility(View.GONE);
+                    } else {
+                        advice_fivetext_three.setText(fivetext_three);
+                    }
                     break;
             }
         }
@@ -287,22 +316,27 @@ public class AdviceCourseActivity extends BaseActivity {
         advice_onetext_one = (TextView) findViewById(R.id.advice_onetext_one);
         advice_onetext_two = (TextView) findViewById(R.id.advice_onetext_two);
         advice_onetext_three = (TextView) findViewById(R.id.advice_onetext_three);
+        advice_onegroup_three = (RadioButton) findViewById(R.id.advice_onegroup_three);
         //    第er组内容
         advice_twotext_one = (TextView) findViewById(R.id.advice_twotext_one);
         advice_twotext_two = (TextView) findViewById(R.id.advice_twotext_two);
         advice_twotext_three = (TextView) findViewById(R.id.advice_twotext_three);
+        advice_twogroup_three = (RadioButton) findViewById(R.id.advice_twogroup_three);
         //    第san组内容
         advice_threetext_one = (TextView) findViewById(R.id.advice_threetext_one);
         advice_threetext_two = (TextView) findViewById(R.id.advice_threetext_two);
         advice_threetext_three = (TextView) findViewById(R.id.advice_threetext_three);
+        advice_threegroup_three = (RadioButton) findViewById(R.id.advice_threegroup_three);
         //    第si组内容
         advice_fourtext_one = (TextView) findViewById(R.id.advice_fourtext_one);
         advice_fourtext_two = (TextView) findViewById(R.id.advice_fourtext_two);
         advice_fourtext_three = (TextView) findViewById(R.id.advice_fourtext_three);
+        advice_fourgroup_three = (RadioButton) findViewById(R.id.advice_fourgroup_three);
         //    第wu组内容
         advice_fivetext_one = (TextView) findViewById(R.id.advice_fivetext_one);
         advice_fivetext_two = (TextView) findViewById(R.id.advice_fivetext_two);
         advice_fivetext_three = (TextView) findViewById(R.id.advice_fivetext_three);
+        advice_fivegroup_three = (RadioButton) findViewById(R.id.advice_fivegroup_three);
     }
 
     private void initData() {
