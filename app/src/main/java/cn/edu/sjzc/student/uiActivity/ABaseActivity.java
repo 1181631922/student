@@ -12,7 +12,7 @@ import java.util.Properties;
 import cn.edu.sjzc.student.R;
 
 public class ABaseActivity extends Activity {
-//    protected String aBaseUrl;
+    protected String ABaseUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +25,12 @@ public class ABaseActivity extends Activity {
         try {
             InputStream inputStream = getAssets().open("fanyafeng.properties");
             properties.load(inputStream);
-//            aBaseUrl = properties.getProperty("ServerUrl");
+            ABaseUrl = properties.getProperty("ServerUrl");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
+    public String getServerURL() {
+        return ABaseUrl;
+    }
 }

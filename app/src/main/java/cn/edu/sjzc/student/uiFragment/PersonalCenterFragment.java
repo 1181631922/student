@@ -73,8 +73,8 @@ public class PersonalCenterFragment extends BaseFragment implements OnClickListe
 
         switch (v.getId()) {
             case R.id.user_but:
-                Intent it_user = new Intent(getActivity(), PerChangeInfoActivity.class);
-                PersonalCenterFragment.this.startActivity(it_user);
+//                Intent it_user = new Intent(getActivity(), PerChangeInfoActivity.class);
+//                PersonalCenterFragment.this.startActivity(it_user);
                 break;
             case R.id.per_person_but:
                 Intent it_person = new Intent(getActivity(), PerPersonalInfoActivity.class);

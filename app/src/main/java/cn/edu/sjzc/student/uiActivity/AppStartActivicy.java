@@ -42,7 +42,7 @@ public class AppStartActivicy extends BaseActivity {
                 startActivity(intent);
                 AppStartActivicy.this.finish();
             }
-        }, 1000);
+        }, 4000);
 //        if (CheckNetworkState()) {
 //            new Thread(connectNet).start();
 //

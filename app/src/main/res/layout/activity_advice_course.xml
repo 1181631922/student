@@ -178,6 +178,7 @@
 
                 <LinearLayout
                     android:id="@+id/layout_one"
+                    android:visibility="gone"
                     android:layout_width="fill_parent"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"

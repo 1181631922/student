@@ -57,7 +57,7 @@ public class NetCheckDialog extends Dialog implements View.OnClickListener {
         dialog_title = (TextView) findViewById(R.id.dialog_title);
         dialog_title.setText("设置网络");
         dialog_detail = (TextView) findViewById(R.id.dialog_detail);
-        dialog_detail.setText("网络未连接，是否这是网络？");
+        dialog_detail.setText("网络未连接，是否设置网络？");
 
         confirmBtn = (Button) findViewById(R.id.confirm_btn);
         confirmBtn.setText("确定");

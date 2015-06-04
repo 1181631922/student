@@ -214,15 +214,15 @@ public class FindTeacherFragment extends BaseFragment implements
             new Handler() {
                 @Override
                 public void handleMessage(Message msg) {
-                    if (CheckNetworkState()) {
-                        findteacher_progressbar.setVisibility(View.VISIBLE);
-                        Thread loadThread = new Thread(new LoadThread());
-                        loadThread.start();
+//                    if (CheckNetworkState()) {
+//                        findteacher_progressbar.setVisibility(View.VISIBLE);
+//                        Thread loadThread = new Thread(new LoadThread());
+//                        loadThread.start();
                         pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
-                    } else {
-                        NetCheckDialog netCheckDialog = new NetCheckDialog(getActivity(), R.style.mystyle, R.layout.dialog_custom);
-                        netCheckDialog.show();
-                    }
+//                    } else {
+//                        NetCheckDialog netCheckDialog = new NetCheckDialog(getActivity(), R.style.mystyle, R.layout.dialog_custom);
+//                        netCheckDialog.show();
+//                    }
 
                 }
             }.sendEmptyMessageDelayed(0, 2000);

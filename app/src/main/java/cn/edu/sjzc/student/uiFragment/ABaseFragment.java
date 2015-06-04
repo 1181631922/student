@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.Properties;
 
 public class ABaseFragment extends Fragment {
-//    protected String aBaseUrl;
+    protected String ABaseUrl;
     protected Context context;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,10 +28,12 @@ public class ABaseFragment extends Fragment {
         try {
             InputStream inputStream = getActivity().getAssets().open("fanyafeng.properties");
             properties.load(inputStream);
-//            aBaseUrl = properties.getProperty("ServerUrl");
+            ABaseUrl = properties.getProperty("ServerUrl");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
+    public String getServerURL() {
+        return ABaseUrl;
+    }
 }

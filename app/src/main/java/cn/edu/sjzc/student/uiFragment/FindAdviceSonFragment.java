@@ -165,9 +165,15 @@ public class FindAdviceSonFragment extends BaseFragment {
                 @Override
                 public void handleMessage(Message msg) {
                     if (t == 0) {
-                        initCourseView();
+                        scheduleBeanList.clear();
+                        advice_progressbar.setVisibility(View.VISIBLE);
+                        Thread loadThread = new Thread(new LoadThread());
+                        loadThread.start();
                     } else if (t == 1) {
-                        initTeacherView();
+                        scheduleBeanList.clear();
+                        advice_progressbar.setVisibility(View.VISIBLE);
+                        Thread loadThread = new Thread(new LoadTeacherThread());
+                        loadThread.start();
                     }
                     // 千万别忘了告诉控件刷新完毕了哦！
                     pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
@@ -293,6 +299,9 @@ public class FindAdviceSonFragment extends BaseFragment {
     protected class OnTeacherItemClick implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+
             Intent intent = new Intent(getActivity(), AdviceTeacherActivity.class);
             for (int i = 0; i <= position; i++) {
                 if (position == i) {
@@ -302,6 +311,7 @@ public class FindAdviceSonFragment extends BaseFragment {
                 }
             }
             startActivity(intent);
+
         }
     }
 

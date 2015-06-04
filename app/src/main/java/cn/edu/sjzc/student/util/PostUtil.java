@@ -16,6 +16,7 @@ public class PostUtil {
     public static String SESSIONID = null;
 
     public static String postData(String address, Map<String, String> params)throws IOException {
+        Log.d("--------address----------",address);
         String paramStr = "";
         if (params != null) {
             for (Map.Entry<String, String> entry : params.entrySet()) {

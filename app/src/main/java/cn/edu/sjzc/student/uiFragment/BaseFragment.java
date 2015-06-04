@@ -3,6 +3,7 @@ package cn.edu.sjzc.student.uiFragment;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
@@ -12,7 +13,8 @@ import java.util.Date;
 public class BaseFragment extends ABaseFragment implements View.OnClickListener {
 
     private int index;
-    public static String aBaseUrl = "http://192.168.253.2:8080/st/";
+//        public static String aBaseUrl = "http://192.168.253.2:8080/st/";
+    public static String aBaseUrl;
 
 
     public int getIndex() {
@@ -21,6 +23,12 @@ public class BaseFragment extends ABaseFragment implements View.OnClickListener 
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        aBaseUrl = getServerURL();
     }
 
     public static String getMilliToDate(String time) {

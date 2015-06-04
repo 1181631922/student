@@ -113,6 +113,7 @@ public class HomeInfoActivity extends BaseActivity implements View.OnClickListen
                     initCourseView();
                     break;
                 case 1:
+                    teacher_show_progress.setVisibility(View.GONE);
                     Toast.makeText(HomeInfoActivity.this, "教师未发起评价！", Toast.LENGTH_SHORT).show();
                     break;
             }

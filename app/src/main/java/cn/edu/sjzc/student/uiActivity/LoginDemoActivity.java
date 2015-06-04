@@ -53,7 +53,6 @@ public class LoginDemoActivity extends BaseActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login_first);
-        Log.d("-----abaseurl-------",aBaseUrl);
 //		初始化视图控
         initView();
         // 初始化数据
@@ -132,15 +131,14 @@ public class LoginDemoActivity extends BaseActivity implements OnClickListener {
         }
     }
 
-    private boolean loginServer(String username, String password)
-            throws UnsupportedEncodingException {
+    private boolean loginServer(String username, String password)throws UnsupportedEncodingException {
         boolean loginValidate = false;
         Map<String, String> map = new LinkedHashMap<String, String>();
         map.put("number", username);
         map.put("password", password);
         try {
             String backMsg = PostUtil.postData(loginUrl, map);
-            Log.d("----------backmsg----------", backMsg);
+            Log.d("----------loginUrl----------", loginUrl);
             try {
                 JSONObject jsonObject = new JSONObject(backMsg);
                 int state = jsonObject.getInt("state");

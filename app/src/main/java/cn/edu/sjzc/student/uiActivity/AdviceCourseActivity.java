@@ -65,7 +65,7 @@ public class AdviceCourseActivity extends BaseActivity {
     private RadioButton advice_fivegroup_three;
 
     private boolean isNet = false;
-    private String number, message;
+    private String number, message, uimessage;
     private String ADVICE_COURSE = aBaseUrl + "course!findEvaluationListAndroid";
     private ProgressBar advice_progressbar;
     private int A = 0;
@@ -103,7 +103,13 @@ public class AdviceCourseActivity extends BaseActivity {
                     Toast.makeText(AdviceCourseActivity.this, message, Toast.LENGTH_LONG).show();
                     finish();
                     break;
+                case 3:
+                    advice_progressbar.setVisibility(View.GONE);
+                    Toast.makeText(AdviceCourseActivity.this, uimessage, Toast.LENGTH_LONG).show();
+                    finish();
+                    break;
                 case 10:
+                    layout_one.setVisibility(View.VISIBLE);
                     advice_one_title.setText(one_title);
                     advice_onetext_one.setText(onetext_one);
                     advice_onetext_two.setText(onetext_two);
@@ -165,86 +171,94 @@ public class AdviceCourseActivity extends BaseActivity {
         isNet = false;
         Map<String, String> map = new LinkedHashMap<String, String>();
         map.put("courseId", courseId);
+        map.put("number", number);
         try {
             String backMsg = PostUtil.postData(ADVICE_COURSE, map);
             Log.d("-------evaluation-----------", backMsg);
             try {
                 JSONObject jsonObject = new JSONObject(backMsg);
-                JSONArray advicearray = jsonObject.getJSONArray("content");
-                for (int i = 0; i < advicearray.length(); i++) {
+                uimessage = jsonObject.getString("message");
+                if (uimessage.equals("") || uimessage.equals(null)) {
+                    JSONArray advicearray = jsonObject.getJSONArray("content");
+                    for (int i = 0; i < advicearray.length(); i++) {
 
-                    if (i == 0) {
-                        JSONObject adviceobj = advicearray.getJSONObject(i);
-                        one_title = adviceobj.getString("evaluationContent");
-                        onetext_one = adviceobj.getString("A");
-                        onetext_two = adviceobj.getString("B");
-                        onetext_three = adviceobj.getString("C");
-                        Message message1 = Message.obtain();
-                        message1.what = 10;
-                        handler.sendMessage(message1);
+                        if (i == 0) {
+                            JSONObject adviceobj = advicearray.getJSONObject(i);
+                            one_title = adviceobj.getString("evaluationContent");
+                            onetext_one = adviceobj.getString("A");
+                            onetext_two = adviceobj.getString("B");
+                            onetext_three = adviceobj.getString("C");
+                            Message message1 = Message.obtain();
+                            message1.what = 10;
+                            handler.sendMessage(message1);
 
 //                        advice_one_title.setText(adviceobj.getString("evaluationContent"));
 //                        advice_onetext_one.setText(adviceobj.getString("A"));
 //                        advice_onetext_two.setText(adviceobj.getString("B"));
 //                        advice_onetext_three.setText(adviceobj.getString("C"));
-                    }
-                    if (i == 1) {
-                        JSONObject adviceobj = advicearray.getJSONObject(i);
-                        two_title = adviceobj.getString("evaluationContent");
-                        twotext_one = adviceobj.getString("A");
-                        twotext_two = adviceobj.getString("B");
-                        twotext_three = adviceobj.getString("C");
-                        Message message1 = Message.obtain();
-                        message1.what = 11;
-                        handler.sendMessage(message1);
+                        }
+                        if (i == 1) {
+                            JSONObject adviceobj = advicearray.getJSONObject(i);
+                            two_title = adviceobj.getString("evaluationContent");
+                            twotext_one = adviceobj.getString("A");
+                            twotext_two = adviceobj.getString("B");
+                            twotext_three = adviceobj.getString("C");
+                            Message message1 = Message.obtain();
+                            message1.what = 11;
+                            handler.sendMessage(message1);
 //                        advice_two_title.setText(adviceobj.getString("evaluationContent"));
 //                        advice_twotext_one.setText(adviceobj.getString("A"));
 //                        advice_twotext_two.setText(adviceobj.getString("B"));
 //                        advice_twotext_three.setText(adviceobj.getString("C"));
-                    }
-                    if (i == 2) {
-                        JSONObject adviceobj = advicearray.getJSONObject(i);
-                        three_title = adviceobj.getString("evaluationContent");
-                        threetext_one = adviceobj.getString("A");
-                        threetext_two = adviceobj.getString("B");
-                        threetext_three = adviceobj.getString("C");
-                        Message message1 = Message.obtain();
-                        message1.what = 12;
-                        handler.sendMessage(message1);
+                        }
+                        if (i == 2) {
+                            JSONObject adviceobj = advicearray.getJSONObject(i);
+                            three_title = adviceobj.getString("evaluationContent");
+                            threetext_one = adviceobj.getString("A");
+                            threetext_two = adviceobj.getString("B");
+                            threetext_three = adviceobj.getString("C");
+                            Message message1 = Message.obtain();
+                            message1.what = 12;
+                            handler.sendMessage(message1);
 //                        advice_three_title.setText(adviceobj.getString("evaluationContent"));
 //                        advice_threetext_one.setText(adviceobj.getString("A"));
 //                        advice_threetext_two.setText(adviceobj.getString("B"));
 //                        advice_threetext_three.setText(adviceobj.getString("C"));
-                    }
-                    if (i == 3) {
-                        JSONObject adviceobj = advicearray.getJSONObject(i);
-                        four_title = adviceobj.getString("evaluationContent");
-                        fourtext_one = adviceobj.getString("A");
-                        fourtext_two = adviceobj.getString("B");
-                        fourtext_three = adviceobj.getString("C");
-                        Message message1 = Message.obtain();
-                        message1.what = 13;
-                        handler.sendMessage(message1);
+                        }
+                        if (i == 3) {
+                            JSONObject adviceobj = advicearray.getJSONObject(i);
+                            four_title = adviceobj.getString("evaluationContent");
+                            fourtext_one = adviceobj.getString("A");
+                            fourtext_two = adviceobj.getString("B");
+                            fourtext_three = adviceobj.getString("C");
+                            Message message1 = Message.obtain();
+                            message1.what = 13;
+                            handler.sendMessage(message1);
 //                        advice_four_title.setText(adviceobj.getString("evaluationContent"));
 //                        advice_fourtext_one.setText(adviceobj.getString("A"));
 //                        advice_fourtext_two.setText(adviceobj.getString("B"));
 //                        advice_fourtext_three.setText(adviceobj.getString("C"));
-                    }
-                    if (i == 4) {
-                        JSONObject adviceobj = advicearray.getJSONObject(i);
-                        five_title = adviceobj.getString("evaluationContent");
-                        fivetext_one = adviceobj.getString("A");
-                        fivetext_two = adviceobj.getString("B");
-                        fivetext_three = adviceobj.getString("C");
-                        Message message1 = Message.obtain();
-                        message1.what = 14;
-                        handler.sendMessage(message1);
+                        }
+                        if (i == 4) {
+                            JSONObject adviceobj = advicearray.getJSONObject(i);
+                            five_title = adviceobj.getString("evaluationContent");
+                            fivetext_one = adviceobj.getString("A");
+                            fivetext_two = adviceobj.getString("B");
+                            fivetext_three = adviceobj.getString("C");
+                            Message message1 = Message.obtain();
+                            message1.what = 14;
+                            handler.sendMessage(message1);
 //                        advice_five_title.setText(adviceobj.getString("evaluationContent"));
 //                        advice_fivetext_one.setText(adviceobj.getString("A"));
 //                        advice_fivetext_two.setText(adviceobj.getString("B"));
 //                        advice_fivetext_three.setText(adviceobj.getString("C"));
-                    }
+                        }
 
+                    }
+                } else {
+                    Message message1 = Message.obtain();
+                    message1.what = 3;
+                    handler.sendMessage(message1);
                 }
                 isNet = true;
             } catch (JSONException e) {
